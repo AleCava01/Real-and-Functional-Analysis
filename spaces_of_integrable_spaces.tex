@@ -1,0 +1,57 @@
+\section{Spaces of integrable functions}
+\subsection{$L^1$ space}
+\subsubsection{Da $\mathcal L^1$ a $L^1$}
+Consideriamo uno spazio $(X,\mathcal M,\mu)$ completo. \\
+Vediamo che:
+$$\mathcal L^1(X,\mathcal M,\mu)\coloneqq\{f:X\to \overline{\mathbb R}\ |\  f \text{ Lebesgue integrabile}\}$$
+è uno spazio vettoriale. Infatti:
+\begin{itemize}
+    \item Se $f,g\in \mathcal L^1(E),\ \alpha, \beta \in \mathbb R$\\
+     $$\int_E (\alpha f+\beta g)=\alpha \int_E f + \beta \int_E g$$
+     \begin{itemize}
+         \item $\int_E f\in \mathbb R$
+         \item $\int_E g \in \mathbb R$
+     \end{itemize}
+     $\implies \int_E (\alpha f+\beta g)\in \mathbb R$
+\end{itemize}
+\paragraph{Ma è uno spazio metrico?}
+Uno spazio metrico consente di definire e analizzare la convergenza delle funzioni, inoltre, uno spazio metrico può essere completo (ogni successione di Cauchy converge a un limite all'interno dello spazio). La proprietà di completezza risulta fondamentale in diverse applicazioni che seguiranno, come per le equazioni alle derivate parziali e nella teoria delle distribuzioni.
+\paragraph{Ricerca di una distanza in $\mathcal L^1$}
+
+Date due funzioni $f,g\in \mathcal L^1(X,\mathcal M,\mu)$, possiamo definire una distanza $$d_1:\mathcal L^1\times \mathcal L^1\to [0,+\infty), \quad d_1(f,g)=\int_X|f-g|\mathrm \ d\mu$$
+(Utilizziamo la norma 1 solo perché lo spazio che stiamo considerando è $\mathcal L^1$, avremmo potuto usare qualsiasi norma, l'indice dello spazio sta a indicare quella utilizzata)\\
+Proviamo quindi a verificare che $d_1$ sia effettivamente una distanza, richiamando la definizione (\ref{(def) Metrica (distanza)}):
+\begin{enumerate}
+    \item $\int_X|f-g|\mathrm \ d\mu=0\iff f=g$\myquad[15] fallisce\\
+     $\int_X|f-g|\mathrm \ d\mu\geq 0 \quad \forall f,g\in \mathcal L^1$\myquad[15] ok
+    \item $\int_X|f-g|\mathrm \ d\mu=d\int_X|g-f|\mathrm \ d\mu\quad \forall f,g\in \mathcal L^1$\myquad[9] ok
+    \item $\int_X|f-g|\mathrm \ d\mu\leq \int_X|f-h|\mathrm \ d\mu+\int_X|h-g|\mathrm \ d\mu\quad \forall f,g,h\in \mathcal L^1$ \quad\  ok
+\end{enumerate}
+La prima condizione fallisce perché:
+\begin{itemize}
+    \item $\int_X |f-g|=0\implies f=g$\quad è falso
+    \item $\int_X |f-g|=0\impliedby f=g$\quad è vero
+\end{itemize}
+Osserviamo che è invece vero che $$\int_X |f-g|=0\implies f=g \quad \textbf{a.e.}$$
+L'idea a questo punto è quella di modificare lo spazio $\mathcal L^1$, introducendo una classe di equivalenza:
+$$u\sim v\iff u(x)=v(x) \text{ for a.e. } x\in X$$
+\subsubsection{(def) $L^1$ definition}
+Definiamo $L^1$ come:
+$$L^1(X,\mathcal M,\mu)\coloneqq \frac{\mathcal L^1(X,\mathcal M,\mu)}\sim =\{[u]\ :\ u\in \mathcal L^1(x)\}$$
+Osserviamo che $(L^1, d_1)$ è uno spazio metrico.
+\subsection{$L^\infty$ space}
+\subsubsection{(def) Essentially bounded functions}
+Una funzione si dice essenzialmente limitata se esiste un valore $M$ oltre il quale $f(x)$ può superare $M$ solo su un insieme di misura nulla.
+
+$f:X\to \overline{\mathbb R}$ measurable, it is essentially bounded if $\exists M>0$ s.t. $$\mu(\{x\in X\ :\ |f(x)|>M\})=0$$
+In alternativa, $f$ è essentially bounded se $\exists M>0$ tale che $|f(x)|<M $ a.e.
+\subsubsection{(def) Essential Supremum ($\esssup$)}
+Se $f $ è essentially bounded, l'essential supremum è:
+$$\esssup_Xf\coloneqq \inf \left\{ M \in \mathbb{R} : \mu(\{ x \in X : f(x) > M \}) = 0 \right\}$$
+Ovvero è il più piccolo numero $M$ tale che la funzione $f(x)$ sia minore o uguale a $M$ su quasi tutto l'insieme $X$, ignorando insiemi di misura nulla.
+
+In altre parole, è il supremo dei valori che la funzione assume quasi ovunque, trascurando eventuali picchi su insiemi trascurabili dal punto di vista della misura.
+\subsubsection{(def) $L^\infty$ definition}
+$$\mathcal L^\infty(X,\mathcal M,\mu)=\{ f:X\to \overline{\mathbb R}, \text{ essentially bounded}\}$$
+$$L^\infty(X,\mathcal M,\mu)=\frac{\mathcal L^\infty(X,\mathcal M,\mu)}\sim$$
+Osserviamo che $L^\infty$ è uno spazio vettoriale ed è uno spazio metrico con $d_\infty(f,g)=\esssup_X|u-v|$

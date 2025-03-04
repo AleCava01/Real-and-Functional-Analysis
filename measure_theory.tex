@@ -1,0 +1,143 @@
+\section{Measure Theory}
+\subsection{Metric Spaces}
+Uno spazio metrico è un insieme $X$ sul quale è definita una distanza $d$ e si indica con $(X,d)$.
+\paragraph{Esempi}
+\begin{itemize}
+    \item $(\mathbb R^n, d_E)$ dove $d_E$ è la distanza Euclidea ($d_E(x,y)=\sqrt{\sum_{i=1}^n|x_i-y_i|^2}$) è uno spazio metrico.
+\end{itemize}
+\subsubsection{(def) Metric (distance)}\label{(def) Metrica (distanza)}
+Sia $X$ un insieme non vuoto. Una funzione $d:X\times X\to [0,+\infty)$ è detta distanza (o metrica) su $X$ se le seguenti condizioni sono soddisfatte:
+\begin{enumerate}
+    \item $d(x,y)=0\iff x=y$\\
+     $d(x,y)\geq 0 \quad \forall x,y\in X$
+    \item $d(x,y)=d(y,x)\quad \forall x,y\in X$
+    \item $d(x,y)\leq d(x,z)+d(z,y)\quad \forall x,y,z\in X$
+\end{enumerate}
+\paragraph{Esempi di distanze}
+\begin{itemize}
+    \item Norma p (la norma è anche una distanza)
+    $$d_p(x,y)=\Big (\sum_{i=1}^n |x_i-y_i|^p\Big)^{\frac 1p}$$
+    \item Discrete distance$$d(x,y)\coloneqq \begin{cases}0\quad x=y\\ 1 \quad x\neq y\end{cases}$$
+\end{itemize}
+\subsubsection{(def) Open ball}
+Dato uno spazio metrico $(X,d)$, $x_0\in X$, $r>0$,
+$$B_r(x_0)=B_d(x_0,r)=\{ x\in X\ :\ d(x,x_0)<r\}$$
+è detta palla aperta centrata in $x_0$ e di raggio $r$.
+\subsubsection{(def) Topologia}
+Una topologia su un insieme $X$ è una struttura che specifica quali sottoinsiemi di $X$ devono essere considerati aperti.
+
+Una topologia $\mathcal T$ su $X$ è una collezione di sottoinsiemi di $X$ che soddisfa le seguenti tre proprietà:
+\begin{enumerate}[label=\roman*]
+    \item \textbf{L'insieme vuoto e l'insieme X sono aperti}\\
+    $$\emptyset \in \mathcal T \land X\in \mathcal T$$
+    \item \textbf{Chiusura per unioni arbitrarie}\\
+    Se $\{U_i\}_{i\in I}$ è una collezione di insiemi aperti in $\mathcal T$ (cioè $U_i\in \mathcal T$ per ogni $i\in I$), allora l'unione di tutti gli $U_i$ appartiene a $\mathcal T$:
+    $$\bigcup_{i\in I}\in \mathcal T$$
+    \item \textbf{Chiusura per intersezioni finite}\\
+    Se $U_1,U_2,\dots, U_n$ sono insiemi aperti in $\mathcal T$, allora l'intersezione di questi insiemi è ancora un insieme aperto:
+    $$U_1\cap U_2\cap \dots \cap U_n\in \mathcal T$$
+\end{enumerate}
+Gli insiemi contenuti in $\mathcal T$ sono chiamati insiemi aperti, e la coppia $(X,\mathcal T)$ si dice spazio topologico.
+
+\subsubsection{(rmk) Metrized topologies}
+Sullo stesso insieme possono essere introdotte diverse distanze. In alcuni casi, diverse misure portano alla stessa "struttura", ma non in generale.
+
+Se su un insieme introduciamo una metrica, questa definisce una topologia metrizzabile. La topologia indotta da una metrica è definita dagli insiemi aperti costruiti in base alla metrica stessa (ad esempio, attraverso palle aperte centrate su un punto). Questo significa che la metrica induce una topologia, ma la topologia in sé esiste indipendentemente dalla distanza.
+
+\subsubsection{(def) Bounded sequence}
+Si consideri uno spazio metrico $(X,d)$ e una sequenza $\{x_n\}_{n\in \mathbb N}\subset X$.\\
+Una sequenza $\{x_n\}_{n\in \mathbb N}$ so dice limitata se $\exists\ x_0\in X,\ M>0$ tale che:
+$$d(x_n,x_0)<M\quad \forall n\in \mathbb N$$
+\subsubsection{(def) Cauchy sequence}
+Si consideri uno spazio metrico $(X,d)$ e una sequenza $\{x_n\}_{n\in \mathbb N}\subset X$.\\
+Diciamo che $\{x_n\}_{n\in \mathbb N}$ è una sequenza di Cauchy se:
+$$\forall \varepsilon >0 \ \exists \bar n_\varepsilon\in \mathbb N : \ d(x_m, x_n)<\varepsilon \quad \forall m,n>\bar n_\varepsilon$$
+Le sequenze di Cauchy non sono sempre convergenti, ma sono sempre limitate.
+\subsubsection{(def) Complete metric space}
+Uno spazio metrico $(X,d)$ è detto completo se ogni sequenza di Cauchy $\{x_n\}_{n\in \mathbb N}$ è convergente.\\
+Esempi:
+\begin{itemize}
+    \item $\Big(\mathbb R^n,\ d_p\Big)$ è completo $\forall p\in [1,+\infty]$
+    \item $\Big(C^0([a,b]),\ d(x,y)\Big)$ con $d(x,y)=\max_{t\in [a,b]}|x(t)-y(t)|$ è completo. Con qualsiasi altra distanza, non è completo.
+    
+\end{itemize}
+
+\subsection{Separabilità}
+Si consideri uno spazio metrico $X$.
+\subsubsection{(def) punto di accumulazione}
+$x_0$ è detto punto di accumulazione per $A$ se $\forall r>0$,
+$$(B_r(x_0)\cap A)\setminus \{x_0\}\neq \emptyset$$
+\subsubsection{(def) insieme denso}
+$A\subset X$ è denso in $X$ se $\overline{A}=X$. Con $\overline{A}=A\cup\{$punti di accumulazione di $A\}$
+
+Ad esempio, $\mathbb Q$ è denso in $\mathbb R$.
+
+\subsubsection{(def) insieme separabile}
+$X$ è separabile se $\exists A\subset X$ numerabile e denso in $X$.
+
+
+\subsection{(def) Sigma algebra}
+Una famiglia $$\mathcal{M}\subset \mathcal{P(X)}$$ è detta $\sigma$-algebra se:
+\begin{enumerate}[label=(\roman*)]
+    \item $\emptyset \in\mathcal{M}$
+    \item è chiusa rispetto al complemento \\
+    preso $E\in\mathcal M $ $ \implies E^C = X\setminus E \in \mathcal M$
+    \item è chiusa rispetto a unioni numerabili \\
+    $\{ E_n\}_{n\in\mathbb N}\subset \mathcal M \implies \bigcup_n E_n \in \mathcal M$
+\end{enumerate}
+
+\subsubsection{(def) Borel sigma algebra}
+La $\sigma$-algebra di Borel su un insieme $X$ è data dalla sigma algebra generata dalla topologia $\mathcal T$ di $X$, ovvero dalla sigma algebra generata da tutti i sottoinsiemi aperti di $X$.
+$$\mathcal B(X)\coloneq\sigma_0(\mathcal T)$$
+\subsubsection{(def) Borel set}
+Qualsiasi sottoinsieme $E\in \mathcal B(X)$ è detto insieme di Borel.
+\subsection{(def) Misura}
+Una funzione $\mu : \mathcal M \to [0,+\inf]$ è una misura positiva su $\mathcal M$ se:
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{$\mu(\emptyset)=0$}
+    \item \textbf{$\sigma$-additività}
+    \\data una famiglia di insiemi $\{E_n\}_{n\in \mathbb N}\subset \mathcal M$, disgiunti $\implies \mu\Big( \bigcup_{n\in \mathbb N}E_n\Big )=\sum_{n\in\mathbb N}\mu(E_n)$
+\end{enumerate}
+\subsubsection{(thm) Proprietà della misura (*)}
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{$\mu$ è finitamente additiva} \\ 
+    Presi $A,B \in \mathcal M$, tali che $A\cap B=\emptyset$, allora $\mu(A\cup B)=\mu(A)+\mu(B)$
+    \item \textbf{monotonia}\\
+    Presi $A,B \in \mathcal M$ tali che $B\subset A$ allora:
+    $$\mu(B)\leq\mu(A)$$
+    \item \textbf{escissione (excision)} \\ Preso un insieme A e un suo sottoinsieme B di di misura finita, allora la misura della differenza tra i due insiemi è ugualle alla differenza delle misure di ciascun insieme.\\
+    Formalmente:\\
+    Presi $A,B\in \mathcal M$ tali che $B\subset A$ e $\mu(B)<+\infty$, allora $$\mu(A\setminus B)=\mu(A)-\mu(B)$$
+\end{enumerate}
+
+\subsubsection{(thm) Continuity along monotone sequences (*)}
+Data una successione di insiemi monotona (crescente o decrescente), la misura del limite della successione è pari al limite delle misure di ogni elemento della successione. \\ \\
+Presa $\{ E_n\}_{n\in \mathbb N}\subset \mathcal M$ tale $\{E_n\}_n \nearrow$ $$E\coloneq \lim_n E_n =\bigcup_n E_n\implies \mu(E)=\lim_n\mu (E_n)$$ 
+\\
+Oppure, presa $\{ E_n\}_{n\in \mathbb N}\subset \mathcal M$ tale $\{E_n\}_n \searrow$ e assumendo $\mu(E_1)<+\infty$ $$E\coloneq \lim_n E_n =\bigcap_n E_n\implies \mu(E)=\lim_n\mu (E_n)$$ 
+
+\subsubsection{(thm) $\sigma$-subadditivity (*)}
+Presa una successione
+$$\{E_n\}_{n\in\mathbb N}\subset \mathcal M$$
+non necessariamente disgiunta,
+$$\mu\Big (\bigcup_{n=1}^{+\infty} E_n\Big )\le \sum_{n=1}^{+\infty}\mu(E_n)$$
+
+\subsubsection{(def) Zero measure e negligible set.}
+Considerando uno spazio di misura $(X,\mathcal M,\mu)$,\\
+Preso $E\in \mathcal M$, se $\mu(E)=0$ allora $E$ si dice che ha misura zero.\\
+Un qualsiasi insieme $F\subset X$ (non necessariamente misurabile) si dice negligibile se $\exists E \in \mathcal M$ tale che $\mu(E)=0$, con $F\subset E$.
+\subsubsection{(def) Completezza della misura o dello spazio di misura}\label{(def) completezza della misura o dello spazio di misura}
+Una misura (o uno spazio di misura) si dice completa se tutti i negligible sets sono misurabili e hanno misura zero.
+\subsubsection{(def) $\sigma$-finite measure}
+A $\sigma$-finite measure is a measure that allows a large or even "infinite" set to be brokwn down into a countable collection of smaller sets, each with finite measure.
+
+A measure space $(X,\mathcal M,\mu)$ is said to have a $\sigma$-finite measure $\mu$ if there exists a countable collection of measurable sets $\{E_i\}_{i=1}^\infty\subset \mathcal M$ such that:
+\begin{itemize}
+    \item $X=\bigcup_{i=1}^\infty E_i$
+    \item $\mu(E_i)<+\infty \quad \forall i$
+\end{itemize}
+\paragraph{Exaple}
+\begin{itemize}
+    \item The counting measure $\mu_\#$ on $\mathbb Z$ is $\sigma$-finite on $\mathbb Z$, in fact $\mathbb Z=\bigcup_{n\in \mathbb Z}\{n\}$ and $\mu_\#(\{n\})=1$
+    \item (anticipation): $\lambda$ (Lebesgue's measure on $\mathbb R$) is $\sigma$-finite, as $\mathbb R$ can be partitioned into intervals $[-n,n]$ with finite Lebesgue measure $\lambda([-n,n])=2n$
+\end{itemize}

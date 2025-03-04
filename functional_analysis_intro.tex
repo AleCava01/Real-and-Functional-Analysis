@@ -1,0 +1,116 @@
+\section{Functional Analysis Introduction - Banach Spaces}
+\chapquote{``A mathematician is a person who can find analogies between theorems; a better mathematician is one who can see analogies between proofs and the best mathematician can notice analogies between theories."}{Stefan Banach}
+
+\begin{center}
+    "infinite dimension linear algebra"
+\end{center}
+
+Take $X$ vector space.
+$$\text{dim}(X)=N<+\infty \implies X\simeq \mathbb R^n$$
+
+Typical examples of $X:\text{dim} (X)=+\infty$ are "function spaces".
+
+\paragraph{Typical applications} Differential Equations. All them from an abstract point of view, can be seen as problem in functional spaces.
+
+\paragraph{Example}
+$$-\Delta : C^2(\Omega ) \to C(\Omega)$$
+Then $-\Delta u = f$ is a linear problem in $\infty$-dimension, as well as $A\bar x = \bar b$ is a linear problem in finite dimension.
+\subsection{Basic definitions}
+\subsubsection{(def) Norm on X}
+A norm on X is a function:
+$$\Vert \cdot\Vert :X\to \mathbb R$$
+such that:
+\begin{enumerate}
+    \item $\Vert x\Vert \geq 0\quad \forall x\in X,\ \Vert x\Vert =0\iff x=0$
+    \item $\Vert \alpha x \Vert = |\alpha|\cdot \Vert x\Vert\quad \forall \alpha \in \mathbb R, x\in X$\
+    \item $\Vert x+y \Vert \leq \Vert x\Vert + \Vert y\Vert \quad x,y\in X$\tab (Triangular inequality)
+\end{enumerate}
+\subsubsection{(def) Normed space}
+$X$ is called normed (vector) space if:
+\begin{itemize}
+    \item $X$ has a vector space structure
+    \item We can do linear combinations of the vectors in out space:\\
+    Given $v,w\in X,\ \alpha,\beta\in \mathbb R\implies$
+    $$\alpha v+\beta w\in X$$
+    \item has a norm $\cnorm$ defined on it
+\end{itemize}
+The normed vector space is denoted as $(X,\cnorm)$.
+\subsubsection{(prop) "normed" implies "metric" space}
+Take $(X,\Vert \cdot \Vert )$ normed, we can choose $$d(x,y)=\Vert x-y\Vert$$
+Then $d$ is a distance on $X\implies (X,d)$ is a metric space.
+
+Questo vuol dire che ogni spazio normato è anche uno spazio metrico.
+\subsubsection{(rmk) Topologia normica}
+Definire una norma su uno spazio vettoriale induce una distanza, che a sua volta induce una topologia sullo spazio.
+
+La distanza $d$ induce una topologia su $X$, chiamata topologia indotta dalla norma o topologia normica. In questa topologia, un insieme $Y\subset X$ è aperto se, per ogni punto $x_0\in Y$, esiste un $r>0$ tale che la palla aperta di raggio $r$ centrata in $x_0$,
+$$B_r(x_0)=\{x\in Y:d(x,x_0)<r\}$$
+è contenuta in $Y$.
+\subsubsection{(prop) caratterizzazione sequenziale della continuità per funzioni tra spazi normati}
+ $f:X\to Y$ ($X,Y$ spazi normati),
+    $$f\text{ is continuous at }x \iff \forall \{x_n\}_n:x_n\to x \text{ in } X \text{ it holds } f(x_n)\to f(x) \text{ in } Y$$
+Questa proprietà permette di verificare la continuità di $f$ tramite la convergenza delle successioni piuttosto che tramite la definizione $\varepsilon\text-\delta$
+\paragraph{Definizione $\varepsilon$-$\delta$ di continuità}
+ $f:X\to Y$ ($X,Y$ spazi metrici), afferma che $f$ è continua in un punto $x\in X$ se:
+ $$\forall \varepsilon, \ \exists\delta >0 \text{ t.c. }d_X(x,x_0)<\delta \implies d_Y(f(x),f(x_0))<\varepsilon \quad \forall x_0\in X$$
+
+\subsubsection{(def) Convergenza forte (convergenza nella norma)}
+Consideriamo $X$ normed space.\\
+Una successione $\{x_n\}_{n\in \mathbb N}\subset X$ in uno spazio normato $X$ converge a $x\in X$ se la distanza (misurata nella norma) tra $x_n$ e $x$ tende a zero al tendere di $n$ all'infinito.
+$$\Vert x_n-x\Vert\xrightarrow[n\to+\infty]{}0$$
+\subsubsection{Exercises}
+Show that:
+\begin{enumerate}
+    \item $$\Big \vert \Vert x\Vert -\Vert y\Vert \Big \vert \leq \Vert x-y\Vert $$
+    \item $$\Vert \cdot \Vert :X\to \mathbb R$$ is continuous in $X$
+\end{enumerate}
+\subsubsection{(def) Cauchy sequence}
+$\{x_n\}_n\subset X$ is a Cauchy sequence (or fundamental sequence) if 
+$$\Vert x_n-x_m\Vert \to 0\quad \text{as }n,m\to +\infty$$
+($\forall \varepsilon>0 \quad \exists \bar n \ : \ n,m\geq \bar n \implies \Vert x_n-x_m\Vert \leq \varepsilon$)
+\paragraph{(rmk) Cauchy sequences does not always converge}
+$$\{ x_n\}_n \text{ converges }\substack{\implies\\ \centernot\impliedby} \{x_n\}_n \text{ is Cauchy sequence} $$
+
+\subsection{Equivalent and Non-equivalet norms}
+\subsubsection{(def) Equivalent norm}
+Take a vector space $X$, and take two norms:
+\begin{itemize}
+    \item $\Vert\cdot \Vert _a: X\to \mathbb R$
+    \item $\Vert\cdot \Vert _b: X\to \mathbb R$
+\end{itemize}
+they are equivalent if $\exists\ 0<c_1\leq c_2$ such that:
+$$c_1\Vert x\Vert_a\leq \Vert x\Vert_b\leq c_2 \Vert x\Vert _a$$
+(in particular, they induce the same convergence, topology, ...)
+
+In $\mathbb R^n$ every norm is equivalent to every other norm...
+\subsubsection{(thm) Norms equivalence theorem}
+Take a vector space $X$, $\text{dim}(X)<+\infty$.
+
+Then all norms are equivalent.
+
+\begin{proof}\ \\
+\begin{enumerate}
+    \item it is enough to check that any norm $\Vert \cdot \Vert$ is equivalent to $\cnorm$ is equivalent to $\cnorm_2$.
+    \item If $\cnorm$ is any norm, $\exists c_1, c_2>0 \text{ s.t. } 0<c_1\leq \Vert x\Vert \leq c_1\quad \forall x\in X:\Vert x\Vert_2=1$
+    \item $f(x)=\Vert x\Vert$, $f:\mathbb R^n\to \mathbb R$
+We want to show that $f$ is continuous with respect to the Euclidean norm $\cnorm_2:$\\
+$$\Vert x_n-x\Vert_2\xrightarrow[n\to +\infty]{}0\implies f(x_n-x)\to 0$$
+$$\Vert x_n-x\Vert \to 0$$
+\end{enumerate}
+Indeed, take any vector $y\in X$ with ($e_1,\dots,e_n)$ basis of $X$
+$$\Vert y\Vert=\Big\Vert\sum_{i=1}^n y_ie_i\Big\Vert$$
+By the triangular inequality,
+$$\Big\Vert\sum_{i=1}^n y_ie_i\Big\Vert\leq \sum_{i=1}^n\Vert y_ie_i\Vert\leq\sum_{i=1}^n|y_i|\Vert e_i\Vert$$
+$$\leq \Big (\max_{i=1,\dots,n}|y_i|\Big)\cdot \sum_{i=1}^n\Vert e_i\Vert$$
+Name $C=\sum_{i=1}^n\Vert e_i\Vert$
+$$=C\Vert y\Vert_\infty\leq C \Vert y\Vert_2$$
+Then
+$$0\leq \Vert x_n-x\Vert\leq C\Vert x_1-x\Vert_2\to 0$$
+Consider the problem:
+$$\min_{\Vert x\Vert_2=1}f(x),\max_{\Vert x\Vert_2=1}f(x)$$
+Since $f$ is continuous and $\{ x:\Vert x\Vert_2 =1$ is compact.
+Thanks to Weierstrass, we know that the sup and inf exists, and so there are two point $x_m, x_M\in \partial B_1(0)$ such that:
+$$\Vert x_m\Vert\leq \Vert x\Vert \leq \Vert x_M\Vert$$
+Since $\Vert x_m\Vert_2=1\implies x_m\neq 0$
+$$0<\Vert x_m\Vert\leq \Vert x\Vert \leq \Vert x_M\Vert$$
+\end{proof}

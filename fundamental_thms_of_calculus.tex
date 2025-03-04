@@ -1,0 +1,166 @@
+\section{Teoremi fondamentali del calcolo integrale}
+\subsubsection{(recall) Teorema fondamentale del calcolo integrale (Riemann)}
+\circled{1}
+Se $f\in C([a,b])$, e se definiamo una funzione $F(x)$ come l'integrale definito di $f$ da $a$ a $x$, ovvero:
+$$F(x)=\int_a^x f(t)\mathrm dt$$
+allora $F(x)\in C^1((a,b))$ e la sua derivata è uguale a $f(x)$:
+$$F'(x)=f(x)$$
+\circled{2}
+Inoltre, se $F$ è una primitiva di $f$ su $[a,b]$, allora
+$$\int_a^b f(x)\ \mathrm dx=F(b)-F(a)$$\label{(FFC)}
+Ci chiediamo ora cosa succede se $f$ è soltanto $L^1$
+\subsection{(thm) 1° Teorema fondamentale del calcolo integrale (*)}
+Presi $f\in L^1([a,b]),\ F(x)=\int_a^xf(t)\ \mathrm dt$ allora:
+\begin{enumerate}
+    \item $F$ è differenziabile in a.e. $x\in [a,b]$
+    \item $F'(x)=f(x)$ per a.e. $x\in [a,b]$
+\end{enumerate}
+\subsubsection{(def) Punto di Lebesgue di $f$}
+$f\in \mathcal L^1([a,b]),\ x \in [a,b]$ è un punto di Lebesgue per $f$ se
+$$\lim_{h\to 0}\frac 1h \int_x^{x+h}|f(t)-f(x)|\ \mathrm dt=0$$
+(se $x=a$, allora $h\to 0^+$, se $x=b$, allora $h\to 0^-$)
+\subsubsection{(thm) Lebesgue}
+$f\in \mathcal L^1([a,b])\implies $ a.e. $x\in [a,b]$ is a Lebesgue point.
+\subsection{Continuity of functions}
+\subsubsection{(def) Absolutely Continuous (AC) functions}
+Una funzione assolutamente continua ha tutte le proprietà di una funzione continua, ma con qualcosa in più: se scegliamo un gruppo di piccoli intervalli su cui la funzione è definita, la somma dei cambiamenti della funzione su ciascuno di questi intervalli sarà piccola, a patto che la somma delle lunghezze degli intervalli sia piccola.
+
+In altre parole, per una funzione assolutamente continua, possiamo controllare quanto cambia il suo valore “globalmente” spezzando l’intervallo in tante piccole parti: se le parti sono piccole abbastanza, anche i cambiamenti della funzione saranno piccoli.
+\paragraph{Formal definition}
+$f:I\to \mathbb R$ è una funzione assolutamente continua $f\in AC(I)$ se $\forall \varepsilon>0,\ \exists \delta$ t.c. $\forall n\in \mathbb N$, $\forall$ families of disjoint subintervals of $I$, $\lambda\Big (\bigcup_{i=1}^n(a_i,b_i)\Big )<\delta$
+$$\implies \sum_{i=1}^n|f(b_i)-f(a_i)|<\varepsilon$$
+\paragraph{Author's remarks}
+\begin{itemize}
+    \item La composizione di due funzioni assolutamente continue è ancora assolutamente continua, a condizione che una delle funzioni sia limitata.
+    \begin{proof}\ 
+    
+    Take
+    \begin{itemize}
+        \item $f:[a,b]\to \mathbb R\in AC([a,b])$
+        \item $g:\mathbb R\to \mathbb R$, assolutamente continua su ogni intervallo chiuso e limitato
+    \end{itemize}
+    
+    
+    \end{proof}
+\end{itemize}
+\subsubsection{(def) Uniformly Continuous (UC) functions}
+$f$ è uniformemente continua se $\forall \varepsilon>0\quad \exists \delta $ t.c., $\forall a_1,b_1\in I$,
+$$|a_1-b_1|<\delta \implies |f(a_1)-f(b_1)|<\varepsilon$$
+($\delta$ è indipendente da $a_1,b_1$)
+$$UC(I)\supset AC(I)$$
+\subsubsection{(def) Lipschitz Continuous functions}
+If $\exists L>0$ t.c. $\forall x,y\in I$, $|f(x)-f(y)|\leq L|x-y|$
+\paragraph{remarks}
+\begin{itemize}
+    \item The set of Lipschits-continuous functions is strictly contained in the set of AC functions.$$Lip(I)\subset AC(I)$$    
+    \item La composizione di funzioni lipschitziane è ancora una funzione lipschitziana.
+    \begin{proof}
+    Consideriamo due funzioni $f,g\in Lip(I)$,\\
+    Per definizione di funzione Lipschitz-continua,
+    $\forall\ x,y\in I$:
+    \begin{enumerate}
+        \item $|f(x)-f(y)|\leq L_1|x-y|$
+        \item $|g(x)-g(y)|\leq L_2|x-y|$
+    \end{enumerate}
+    Di conseguenza,
+    $$|f(g(x))-f(g(y)|\leq L_1|g(x)-g(y)|\leq L_1L_2|x-y|$$
+    $$L=L_1\cdot L_2$$
+    $$\implies f\circ g=f(g(t))\in Lip(I)$$
+    
+    \end{proof}
+\end{itemize}
+
+\subsubsection{(rmk) anticipazione}
+Vedremo che
+$$Lip(I)\subsetneq  AC(I)\subsetneq  UC(I)$$
+Vedremo che:
+\begin{itemize}
+    \item $g'\in C\iff g\in C^1$
+    \item $g'\in L^1\iff g\in AC$
+\end{itemize}
+\subsection{(thm) 2° Teorema fondamentale del calcolo integrale (*)}
+Sia $g:[a,b]\to \mathbb R$. The following propositions are equivalent:
+\begin{enumerate}[label=\roman*]
+    \item $g$ è assolutamente continua in $[a,b]$ $$g\in AC([a,b])$$
+    \item 
+    \begin{itemize}
+        \item $g$ è differenziabile a.e. in $[a,b]$
+        \item $g'\in L^1([a,b])$
+        \item $g(x)-g(y)=\int_y^xg'(t)\mathrm dt\quad \forall x,y\in[a,b]$
+    \end{itemize}    
+\end{enumerate}
+\paragraph{Corollary}
+$$f\in L^1([a,b])\implies F\in AC([a,b])$$
+\subsubsection{(thm) Absolute continuity of the integral (*)}
+Let $f\in L^1(X,\mathcal M,\mu)$. Allora $\forall \varepsilon>0\quad \exists \delta>0$ tale che:
+$$\begin{cases}
+    E\in \mathcal M\\\mu(E)<\delta
+\end{cases}\implies \int_E |f| \mathrm d \mu<\varepsilon$$
+\subsubsection{(examples) AC not implies Lip continuity}
+\textbf{Esempio 1}
+Consider $f(x)=\sqrt x $ in $[0,1]$
+$$\sqrt x = \int _0^x \frac 1{2\sqrt t }\mathrm dt\quad x\in [0,1]$$
+e $g\in AC([0,1])$ (Indeed, $g'\in L^1(0,1)$) 
+but $\sqrt{x}\notin $\ Lip\\
+\subsubsection{(example) UC does not imply AC}
+Considera $$g(x)=\begin{cases}x \sin\frac 1x\quad 0<x\leq 1\\0\quad\quad\quad\quad x=0\end{cases}$$
+è continua in $[0,1]\implies g\in UC([0,1])$
+But it is not AC.\\
+Indeed,
+$$ g'(x)=\sin \Big(\frac 1x\Big)-\frac 1x \cos\Big(\frac 1x\Big)\quad 0<x\leq 1$$
+\begin{itemize}
+    \item $\sin (\frac 1x)\in L^1((0,1))$\\ (si provi applicando il Dominate Convergence Theorem con g=1)
+    \item $-\frac 1x \cos(\frac 1x) \notin L^1((0,1))$
+\end{itemize}
+
+\subsection{AC functions and weak derivatives}
+Lavoriamo in $X=[a,b]\subset \mathbb R$ (diventa molto diverso in $\mathbb R^n$).
+\subsubsection{(recall) Compactly supported ($\varphi \in C_0^\infty([a,b])$)}
+\begin{itemize}
+    \item $\varphi \in C^\infty$
+    \item $\exists [c,d]\subset (a,b)$ t.c. $\varphi=0 $ in $ (a,b)\setminus [c,d]$
+\end{itemize}
+\subsubsection{(prop) intergration by parts in AC}
+Take $u\in [a,b]\to \mathbb R$\\
+$$u\in AC([a,b])\\\iff$$
+\begin{itemize}
+    \item $u \in C([a,b])$
+    \item u è differenziabile a.e.
+    \item $u'\in L^1([a,b])$
+    \item $$\int_a^b u'\varphi \mathrm d x = -\int_a^b u\varphi'\mathrm d x\quad \forall \varphi \in C_0^\infty([a,b])$$
+\end{itemize}
+
+\subsubsection{(def) $W^{1,1}(a,b)$ Weak derivative}
+Let $u\in L^1(a,b)$. \\
+Diciamo che $$u \in W^{1,1}(a,b) \iff \exists w\in L^1(a,b) \text{ t.c. } \int_a^b u\varphi '\mathrm dx=-\int_a^b w\varphi \mathrm d x \quad \forall \varphi \in C_0^\infty $$
+
+Such a $w$ is called weak derivative of $u$ in $(a,b)$, denoted $u'$
+\subsubsection{(rmk) Remarks on weak derivatives}
+\paragraph{rmk 0)}
+\begin{itemize}
+    \item $C([a,b])\iff L^1(a,b)$
+    \item $C^1([a,b])\iff W^{1,1}(a,b)$
+\end{itemize}
+\paragraph{rmk 1)}
+Both $u$ and $w=u'$ are equivalence classes
+\paragraph{rmk 2)}
+If such a $w$ exists, it is unique.
+$$\int_a^b u \varphi ' = -\int_a^b w_1\varphi $$
+$$\int_a^b u \varphi ' = -\int_a^b w_2\varphi $$
+$\forall \varphi \in C_0^\infty ([a,b])$
+$$\implies\int_a^b(w_1-w_2)\varphi =0\quad \forall \varphi \in C_0^\infty$$
+$$\implies w_1-w_2=0\quad a.e. \text{ in} \ [a,b]$$
+\paragraph{rmk 3)}
+In principle, the pointwise and weak derivatives are different objects, and the notation $u'$ may be misleading.\\
+But we know that if we take absolute continuous functions, they coincide.
+\paragraph{rmk 4)}
+The definition of weak derivative can be extended in the senses of measures, of distributions.
+
+Take $$H(x)=\begin{cases} 0\quad x<0\\ 1\quad x>0\end{cases}$$
+$$-\int_{-1}^1 H(x)\varphi '(x)\mathrm d x = -\int_0^1 \varphi'(x)\mathrm d x = -\varphi(1)+\varphi(0)$$
+$$\varphi(1)=0$$
+
+$$\varphi(0)=\int_{[-1,1]} \varphi \mathrm\ d\delta_0$$
+This suggests that $H^1$ è pari a 0 almost everywhere (pointwise), ma è pari a $\delta_0$ (dirac) weakly
+\subsubsection{(thm) AC and $W^{1,1}$ relation (*)}
+$$u\in  AC([a,b])\iff u \in W^{1,1}([a,b])$$

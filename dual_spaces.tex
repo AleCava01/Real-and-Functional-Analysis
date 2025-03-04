@@ -1,0 +1,136 @@
+\section{Dual Spaces}
+
+Consider $X$ normed space, $Y=\mathbb R$
+$$X^*=\mathcal L(X,\mathbb R)$$
+is a Banach, with:
+$$\Vert L\Vert _{X^*}=\Vert L\Vert_*=\sup_{\Vert x\Vert \leq 1}|Lx|$$
+\paragraph{Example}
+$$X=L^p(\Omega,\mathcal M,\mu)\quad 1\leq p\leq +\infty$$
+Take:
+\begin{itemize}
+    \item $p'$ conjugate exponent: $\frac 1p+\frac 1{p'}=1$
+    \item $u\in L^{p'}(\Omega, \mathcal M,\mu)$
+\end{itemize}
+Define:
+$$L_u\in (L^p(\Omega))^*$$
+$$L_uv=\int_\Omega uv\ \mathrm d\mu\quad \forall v\in L^p(\Omega)$$
+Show that:
+\begin{enumerate}
+    \item $L_u$ is well defined
+    \item $L_u$ is linear
+    \item $L_u$ is continuous (bounded)
+    \item $\Vert L_u\Vert _*=?$
+\end{enumerate}
+\textbf{Everything will follow from the Hölder's inequality} $$|L_uv|=\Big|\int_\Omega uv\ \mathrm d\mu \Big|\leq \Vert u\Vert_{p'} \cdot \Vert v\Vert_p $$
+\begin{enumerate}
+    \item $u\in L^{p'},\ v\in L^p\implies |L_uv|<+\infty\implies L_uv\in \mathbb R \quad \forall v$
+    \item $L_u(\alpha_1v_1+\alpha_2v_2)=\int_\Omega u (\alpha_1v_1+\alpha_2v_2)\mathrm d\mu=\alpha_1 \int_\Omega uv_1\mathrm d\mu+\alpha_2\int_\Omega uv_2\mathrm d\mu=\alpha_1L_uv_1+\alpha_2L_uv_2$
+    \item From Hölder's inequality $\implies |L_uv|\leq M\Vert v\Vert_p$, where $M=\Vert u\Vert _{p'} \implies \Vert L_u\Vert _*\leq \Vert u\Vert _{p'}$
+    \item assume $1<p<+\infty$
+    $$\Vert L_u\Vert_{(L^p)^*}=\sup_{v\neq 0} \frac{|L_uv|}{\Vert v\Vert _p}\begin{cases}
+        \leq \sup_{v\neq 0} \frac{\Vert u\Vert _{p'}\Vert v\Vert _p}{\Vert v\Vert _p}=\Vert u\Vert _{p'}\\
+        \geq \frac{|L_u\bar v|}{\Vert \bar v\Vert_p} \quad \forall \bar v\neq 0
+    \end{cases}$$
+    Choose $\bar v$ in such a way that $u\bar v=|u|^{p'}$
+    $$\bar v = |u|^{\frac{p'}p}\cdot \mathrm{sign}(u)$$
+    Then $\bar v\in L^p\impliedby u \in L^{p'}$\\
+    and $$\Vert L_u\Vert_{(L^p)^*}\geq \frac{|L_u\bar v |}{\Vert \bar v\Vert_p}= \frac{\int_\Omega u\bar v\mathrm\ d\mu}{\Big (\int_\Omega |\bar v|^p\mathrm\  d\mu\Big )^{\frac 1p}}=\frac{\int |u|^{p'}\mathrm d\mu}{\Big (\int_\Omega |u|^{p'}\mathrm d\mu \Big )^{\frac 1p}}$$
+    $$ = \frac{\Vert u\Vert_{p'}^{p'}}{\Vert u\Vert _{p'}^{\frac {p'}p}}=\Vert u\Vert _{p'}^{p'-\frac{p'}p}=\Vert u\Vert_{p'}$$
+    (Note that $p'\Big (1-\frac 1p\Big )=p'\cdot \frac 1{p'}=1$)
+    
+\end{enumerate}
+
+\textbf{Resuming}:
+$$ 1<p<+\infty \implies \Vert L_u\Vert_{(L^p)^*}=\Vert u\Vert _{L^{p'}}$$
+\paragraph{Question (and answer)}
+Are all the elements of $(L^p)^*$ of type $L_u$, for some $u\in L^{p'}$? Yes, $1<p<+\infty$ (will be seen in the following)-
+\paragraph{Remark}
+The case $p=1,\ p'=+\infty,\ p=+\infty,\ p'=1$ are more delicate.\\In any case $L_u\in (L^p)^*$.
+$$p=+\infty\implies \Vert L_u\Vert_{(L^\infty)^*}=\Vert u \Vert_{L^1}$$
+$$p=1,\ X\text{ is }\sigma\text{-finite}\implies \Vert L_u\Vert_{(L^1)^*}=\Vert u\Vert_{L^\infty}$$
+To provide the answers above, we need:
+\begin{itemize}
+    \item Hahn-Banach theorems
+    \item Reflexive spaces
+\end{itemize}
+\subsection{Hahn-Banach Theorems and consequences}
+\subsubsection{(thm) Hahn-Banach continuous extencion theorem}
+Let $X$ be a normed space,
+\begin{itemize}
+    \item $Y\subset X$ subspace
+    \item $L_0\in Y^*$
+\end{itemize}
+Then there exists $\tilde L_0\in X^*$ such that:
+$$\begin{cases}
+    \tilde L_0y=L_0y\quad \forall y\in Y\\
+    \Vert \tilde L_0\Vert_{X^*}=\Vert L_0\Vert _{Y^*}
+\end{cases}$$
+\begin{proof}
+    Omitted. Based on the axiom of choice.
+\end{proof}
+\paragraph{Corollary \#1}\ \\
+$X$ normed space, $x_0\in X\setminus \{0\}$.\\
+Then $\exists L\in X^* $ s.t. 
+$$\begin{cases}
+    \Vert L\Vert_{X^*}=1\\
+    Lx_0=\Vert x_0\Vert _X
+\end{cases}$$
+\begin{proof}
+    Take $Y=\mathrm{span}\{x_0\}=\{tx_0:t\in \mathbb R\}$. Since $Y$ is a one-dimensional subspace of $X$, the dual space $Y^*$ consists of all linear functionals on $Y$. 
+    
+    Define $L_0(tx_0)=t\Vert x_0\Vert_X$
+
+    
+\textbf{    is $L_0\in Y^*$?}    
+\begin{enumerate}
+        \item $L_0$ is a functional on $Y$
+        \item $L_0$ is linear (check it!)
+        \item $L_0$ is continuous (since in $\dim(Y)<+\infty$, all linear maps on $Y$ are continuous)
+        \item The norm of $L_0$ in $Y^*$ is given by:
+        $$\Vert L_0\Vert_Y=\sup_{\substack{y\in Y\\ y\neq 0}}\frac{|L_0y|}{\Vert y\Vert_Y}=\sup_{t \neq 0}\frac{|L_0(tx_0)|}{\Vert tx_0\Vert_X}$$
+        By the definition of $L_0$, we have $L_0(tx_0)=t\Vert x_0\Vert_X$, and the norm $\Vert tx_0\Vert_X=|t|\Vert x_0\Vert_X$. Substituting into the expression:
+        $$\sup_{t \neq 0}\frac{|L_0(tx_0)|}{\Vert tx_0\Vert_X}=\sup_{t\neq 0} \frac{|t|\Vert x_0\Vert}{|t|\Vert x_0\Vert}=1$$
+        
+    \end{enumerate}
+    (HB)$\implies \tilde L_0x_0=L_0x_0=1\cdot \Vert x_0\Vert $\\
+    Choose $L=\tilde L_0$
+\end{proof}
+\paragraph{Corollary \#2 (Bounded Linear Functionals separate points)}\ \\
+$\forall x,y\in X$ normed space,
+$$x\neq y\implies \exists\ L\in X^*:Lx\neq Ly$$
+($Lx=Ly\quad \forall L\in X^*\implies x=y$)
+\begin{proof}
+    Take $x\neq y$ and apply Corollary \#1 to $x_0=x-y\neq 0$.\\
+    $\exists L: Lx-Ly=L(x-y)=\Vert x-y\Vert \neq 0$ i.e. $Lx\neq Ly$
+\end{proof}
+\paragraph{Corollary \#3 (Bounded Linear Functionals separate closed subspaces and points)}
+$X$ is normed, $Y\subsetneq X$ closed subspace and 
+$x_0\in X\setminus Y$. Then $\exists L\in X^*$ s.t. $$\begin{cases}
+    L_y=0 \quad \forall y \in Y\\ L_{x_0}\neq 0
+\end{cases}$$
+\paragraph{Remark ($\oplus$ notation)}
+Consider $V,W\subset X$ subspaces, $V\cap W=\{ 0\}$. Then $V\oplus W=\{ v+w:v\in V, w\in W\}$
+\begin{proof} (Corollary \#3)\\
+    Take $Z=\spann\{x_0,Y\}=\spann\{ x_0\} \oplus Y = \{ z\in X:z=tx_0+y,\ t\in \mathbb R, \ y\in Y\}$\\
+    Since $x_0\notin Y$ for every $z\in Z$, then $t,y$ are uniquely defined:
+    $$t_1x_0+y_1=t_2x_0+y_2$$
+    $$(t_1-t_2)x_0=y_2-y_1=0$$
+    The first term belongs to $\spann\{x_0\}$, the second term belongs to $Y$.
+    $$\implies t_1=t_2,\ y_1=y_2$$
+    $$L_0:Z\to \mathbb R$$
+    $$L_0( tx_0+y)= t\in \mathbb R$$
+    We have to show that $L_0\in Z^*$
+    \begin{enumerate}
+        \item $L_0$ is linear
+        \item $L_0$ is continuous (use the Closed Graph Theorem)
+        $$\begin{cases}
+            z_n\to \bar z\\ t_n\to \bar t
+        \end{cases}\implies \bar z= \bar t x_0+\bar y$$
+        
+    \end{enumerate}
+    $$ L(z_n)\to \bar t$$
+    and $$\begin{cases}
+        L_0x_0=L_0(1\cdot x_0+0)=1\\ L_0 y=L_0(0\cdot x_0+y)=0\quad \forall y\in Y
+    \end{cases}$$
+    and finally extend it to $L=\tilde L_0$ using Hahn-Banach.
+\end{proof}

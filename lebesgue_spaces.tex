@@ -1,0 +1,317 @@
+\section{Lebesgue's spaces}
+Consider $(X,\mathcal M,\mu)$ a complete measure space. $p\in [1,+\infty]$
+
+We already defined the $L^1$ and $L^\infty$ of $X$. Analogously, we treat $1\leq p<+\infty$.
+\begin{enumerate}
+    \item $$\mathcal L^p(X,\mathcal M,\mu)\coloneqq \{u:X\to\overline{\mathbb R}, \text{ measurable, } \int_X |u|^p\ \mathrm d\mu<+\infty\}$$
+    
+    Remember that the integral is always definite since $u$ is measurable.
+    \item $$u,v\in \mathcal L^p(X),\quad u\sim v\iff u(x)=v(x) \text{ for a.e. } x\in X$$
+    \item $$L^p(X,\mathcal M,\mu)=\frac{\mathcal L^p(X,\mathcal M,\mu)}\sim$$
+    \item $$\Vert u\Vert_{L^p(X)}=\Vert u\Vert_p=\begin{cases}\Big (\int_X |u|^p\ \mathrm d\mu \Big )^{\frac{1}{p}}\quad 1\leq p<+\infty\\ \esssup_X|u|\quad \quad \quad p=+\infty\end{cases}$$
+    (and $d_p(f,g)=\Vert f-g\Vert_p$)
+\end{enumerate}
+\paragraph{Examples}
+\begin{enumerate}
+    \item Think $X$ as $\mathbb R^n$ with $n\geq 1$,\\
+    Let's define omega as a subset of $X$:
+    $$\Omega\subset \mathbb R^n$$
+$$\Omega \in \mathcal L(\mathbb R^n)$$
+So we have:
+$$\mathcal M=\mathcal L(X),\ \mu=\lambda \ \ (\Omega =(a,b))$$
+\item Take now $(X,\mathcal M,\mu)=(\mathbb N, \mathcal P(\mathbb N), \mu_\#)$\\ \ \\
+This means that:
+$$\ell^p\coloneqq L^p(\mathbb N, \mathcal P(\mathbb N), \mu_\#)$$
+$$\ell^p\coloneqq \begin{cases}
+    \Big\{x=(x_k)_{k\in\mathbb N}\ : \ \sum_{k\in \mathbb N}|x_k|^p<+\infty\Big\}\quad 1\leq p<+\infty\\
+    \Big\{ x=(x_k)_{k\in \mathbb N}: \sup_{\mathbb N}|x_k|<+\infty\Big\}\quad \quad\ \  p=+\infty
+\end{cases}$$
+With norm 
+$$\Vert x\Vert_{\ell^p}=\begin{cases}
+    \Big (\sum_{k\in \mathbb N}|x_k|^p\Big)^{\frac 1p} \quad 1\leq p<+\infty\\
+    \sup_{\mathbb N}|x_k| \quad \quad \quad \quad p=+\infty
+\end{cases}$$
+
+\end{enumerate}
+
+\paragraph{Plan} Show that $L^p(X),\ 1\leq p\leq +\infty$ are Banach space.
+We have to show that:
+\begin{enumerate}
+    \item $L^p(X)$ is a vector space
+    \item $(L^p(X),\cnorm_p)$ is a normed vector space
+    \item $(L^p(X),\cnorm_p)$ is a complete normed vector space (Banach space)
+\end{enumerate}
+To prove each step, we will need to introduce few theorems, lemmas and propositions.
+\subsection{$L^p(X)$ is a vector space}
+\subsubsection{(lemma) Power Mean Inequality}
+$$p\in [1,+\infty), \ a,b\in \mathbb R, \ a,b\geq 0 \implies (a+b)^p\leq 2^{p-1}(a^p+b^p)$$
+Proof: exercise (hint: consider cases $a=0$ and $a\neq 0, \ t=\frac ba$)
+\subsubsection{(proof) $L^p(X)$ is a vector space}
+Assume $1\leq p< +\infty$ ($+\infty$ has different proof procedure, do it as an exercise).
+\\ \ \\
+Take $u,v\in X$, $\alpha\in\mathbb R$, we have to show that:
+\begin{enumerate}
+    \item $\alpha u\in L^p(X)$
+    \item $u+v\in L^p(X)$
+\end{enumerate}
+\begin{proof}\ 
+\begin{enumerate}
+    \item $$0\leq \int_X|\alpha u|^p\mathrm d\mu=|\alpha|^p\int_X |u|^p\mathrm d\mu <+\infty$$
+(if $u$ is measurable $\implies |u|$ is measurable non negative and $0\leq \int_X|u|^p\mathrm d\mu\leq +\infty$ is well defined).
+\item $$\int_X|u+v|^p\mathrm d\mu\leq \int_X\Big(|u|+|v|\Big)^p\mathrm d\mu\leq 2^{p-1}\int_X\Big ( |u|^p+|v|^p\Big ) \mathrm d\mu=$$
+$$=2^{p-1}\Big [\int_X |u|^p\mathrm d\mu +\int_X |v|^p\mathrm d\mu\Big]$$
+\end{enumerate}
+\end{proof}
+
+\subsection{$(L^p(X),\cnorm_p)$ is a normed vector space}
+I have to show that $\cnorm_p$ is a norm in $L^p(X)$. Also here we'll consider cases where $1\leq p< +\infty$, the case $+\infty$ is given as exercise to the reader.
+\\\ \\
+We have to show:
+
+\begin{enumerate}
+    \item 
+        \begin{enumerate}[label=(\alph*)]
+            \item $\Vert u\Vert_p\geq 0 \quad \forall u \in L^p(X)$
+            \item $\Vert u\Vert_p=0\iff u=0\ \text{in} \ L^p(X)$
+        \end{enumerate}
+    \item $\Vert \alpha u \Vert_p=|\alpha |\Vert u\Vert_p $
+    \item Triangular inequality
+\end{enumerate}
+\subsubsection{(def) Conjugate exponent}
+Given every $1\leq p\leq +\infty$, the conjugate exponent (sometimes denoted as $p'\in [1,+\infty]$) satisfies:
+$$\frac 1p +\frac 1{p'}=1$$
+\begin{itemize}
+    \item $(p')'=p$
+    \item $ p=1\iff p'=+\infty$
+    \item $p+p'=pp'$
+    \item $p'(p-1)=p$
+    \item $p'=\frac p{p-1}$
+\end{itemize}
+
+\subsubsection{(lemma) Young inequality}
+$1<p<+\infty$, $a,b\in \mathbb R$, $a,b\geq 0$\\
+Then:
+$$ab\leq \frac 1p a^p+\frac 1{p'} b^{p'}$$
+\begin{proof}
+Remember what a concave function is...\\
+$f \text{ concave},\ 0\leq \lambda\leq 1$
+$$f((1-\lambda)x+\lambda y)\geq (1-\lambda)f(x)+\lambda f(y)$$
+Apply to 
+\begin{itemize}
+    \item $f(x)=\ln x$
+    \item $x=a^p$
+    \item $y=b^{p'}$
+    \item $\lambda = \frac 1{p'}$
+    \item $1-\lambda = \frac 1p$
+\end{itemize}
+$$\ln\Big(\frac 1p a^p+\frac 1{p'} b^{p'}\Big)\geq \frac 1p \ln(a^p)+\frac 1{p'}\ln(b^{p'})=\dots=\ln(ab)$$
+\end{proof}
+\paragraph{Consequences}
+Hölder's inequality
+\subsubsection{(thm) Hölder's inequality (*)}
+Given:
+\begin{itemize}
+    \item $(X, \mathcal M,\mu)$ complete measure space.
+    \item $u,v$ measurable
+    \item $1\leq p,p'\leq +\infty$
+    \item $\frac 1p +\frac 1{p'}=1$
+\end{itemize}
+Then, $$\Vert uv\Vert_1 \leq \Vert u\Vert_p\Vert v\Vert_{p'}$$
+\begin{proof} \ \\
+    Firstly, consider $1<p,p'<+\infty$
+    \begin{itemize}
+        \item If $\Vert u\Vert_p =0$ (or respectively, $\Vert v\Vert_{p'}=0$) then $u=0$ a.e. (respectively, $v=0$ a.e.)
+    $$\implies uv=0 \ a.e.$$
+    $$\implies \Vert uv\Vert_1 =0$$
+    \item If $\Vert u\Vert_p\neq0, \ \Vert v\Vert_{p'}\neq 0$ and $\Vert u\Vert_p\cdot \Vert v\Vert_{p'}=+\infty\implies$ the inequality holds.
+    \item Finally, if $0<\Vert u\Vert_p, \ \Vert v\Vert_{p'}<+\infty$\\
+    We can apply Young inequality to $a=\frac{|u(x)|}{\Vert u\Vert_p}, b =\frac{|v(x)|}{\Vert v\Vert_{p'}}$:
+    $$\frac{|u(x)|\cdot |v(x)|}{\Vert u\Vert_p\Vert v\Vert_{p'}}=ab\leq \frac 1p \frac{|u(x)|^p}{\Vert u\Vert_p^p}+\frac 1{p'}\frac{|v(x)|^{p'}}{\Vert v\Vert_p^{p'}}$$
+    Integrating,
+    $$\frac{\Vert uv\Vert_1}{\Vert u\Vert_p\Vert v\Vert_{p'}}\leq \frac{1}{p}\frac{\Vert u\Vert_p^p}{\Vert u\Vert_p^p}+\frac 1{p'}\frac{\Vert v\Vert_{p'}^{p'}}{\Vert v\Vert_{p'}^{p'}}=1$$
+    \paragraph{Exercise}
+    Conclude the proof with cases $p=1, p'=+\infty$
+    \end{itemize}
+\end{proof}
+\subsubsection{(thm) Minkowski inequality (*)}
+Take $(X,\mathcal M,\mu)$ a complete measure space, $1\leq p\leq +\infty$\\
+Then, $\forall u,v\in L^p(X)$
+$$\Vert u+v\Vert_p\leq \Vert u\Vert_p+\Vert v\Vert_p$$
+\begin{proof}\ \\
+    Let's start considering the case $1<p<\infty$
+    $$\Vert u+v\Vert_p^p=\int_X|u+v|^p\ \mathrm d\mu =$$
+    $$= \int_X |u+v|\cdot |u+v|^{p-1}\ \mathrm d\mu\leq \int_X |u|\cdot |u+v|^{p-1}\ \mathrm d\mu +\int_X|v|\cdot |u+v|^{p-1}\ \mathrm d\mu$$
+    \begin{itemize}
+        \item We can estimate $\int_X |u|\cdot |u+v|^{p-1}\ \mathrm d\mu $ \\ Thanks to Hölder inequality:
+    $$\int_X |u|\cdot |u+v|^{p-1}\ \mathrm d\mu \leq \Big (\int_X |u|^p\ \mathrm d\mu \Big)^{\frac 1p}\Big ( \int_X |u+v|^{(p-1)p'}\mathrm d\mu\Big)^{\frac 1{p'}}$$
+    Recalling $(p-1)p'=p$,
+    $$\int_X |u|\cdot |u+v|^{p-1}\ \mathrm d\mu \leq \Vert u \Vert_p\Vert u+v\Vert_p^{p/p'}=\Vert u\Vert_p\Vert u+v\Vert_p^{p-1}$$
+    \item Analogously, we can estimate $\int_X|v|\cdot |u+v|^{p-1}\ \mathrm d\mu$, obtaining:
+    $$\int_X|v|\cdot |u+v|^{p-1}\ \mathrm d\mu\leq \Vert v\Vert_p\Vert u+v\Vert_p^{p-1}$$
+    \end{itemize}
+    Reassembling all the terms in the inequality,
+    $$\Vert u+v\Vert_p^p\leq \Vert u\Vert_p\Vert u+v\Vert_p^{p-1}+\Vert v\Vert_p\Vert u+v\Vert_p^{p-1}$$
+    Eventually, dividing by $\Vert v\Vert_p\Vert u+v\Vert_p^{p-1}$, we obtain the Minkowski inequality.
+
+    \paragraph{Exercise} Proofs for cases $p=1$ and $p=+\infty$ are given as an exercise to the reader
+    
+\end{proof}
+\subsubsection{(proof) $(L^p(X),\cnorm_p)$ is a normed vector space}
+\begin{proof}\ 
+\begin{enumerate}
+    \item 
+        \begin{enumerate}[label=(\alph*)]
+            \item $\Vert u\Vert_p\geq 0 \quad \forall u \in L^p(X)$\\
+            $\to$ Since $\Vert u\Vert_p=\Big (\int_X|u(x)|^p\ \mathrm dx\Big )^{\frac 1p}$ and the absolute value of $u(x)$ is always positive $\forall x\in X$, we can say that $\Vert u\Vert _p$ is always positive $\forall u \in L^p(X)$
+            \item $\Vert u\Vert_p=0\iff u=0\ \text{in} \ L^p(X)$\\
+            $\to$ Trivial
+        \end{enumerate}
+    \item $\Vert \alpha u \Vert_p=|\alpha |\Vert u\Vert_p $\\
+    $\to$ We have: $$\Vert \alpha u\Vert_p=\Big (\int_X|\alpha u(x)|^p\ \mathrm dx\Big )^{\frac 1p}$$
+    $$\Vert \alpha u\Vert_p=\Big (\int_X|\alpha|^p|u(x)|^p\ \mathrm dx\Big )^{\frac 1p}$$
+    $$\Vert \alpha u\Vert_p=|\alpha|\Big (\int_X|u(x)|^p\ \mathrm dx\Big )^{\frac 1p}$$
+    $$\Vert \alpha u\Vert_p=|\alpha |\Vert u\Vert_p $$
+    \item Triangular inequality $\to$ Minkowski inequality
+\end{enumerate}
+\end{proof}
+
+\subsection{Completeness of $L^p(X,\mathcal M,\mu)$}
+\subsubsection{(thm) Riesz-Fischer}
+Consider $(X,\mathcal{M},\mu)$ a complete measure space, with $1\leq p\leq +\infty$.\\
+Then, $L^p(X,\mathcal M,\mu)$ is a Banach space.
+\begin{proof}\ \\
+    We already proved that $L^p$ is a normed vector space, the only missing property is completeness. We will use the characterization of Banach spaces in terms of absolutely converging series.\\
+    $L^p(X)$ is Banach $\iff \forall \{f_n\}_n\subseteq L^p(X)$
+    $$\sum_{n=1}^{+\infty}\Vert f_n\Vert_p<+\infty\implies \sum_{n=1}^{+\infty} f_n \text{ converges in }L^p(X)$$
+    Introduce $g_k(x)=\sum_{n=1}^k|f_n(x)|$ (measurable)\\
+            $$\forall x\in X, g_k(x)\nearrow$$
+$$\implies g(x)=\lim_{k\to +\infty}g_k(x)=\sum_{n=1}^{+\infty}|f_n(x)|\leq +\infty$$
+    Then, using Minkowsky inequality: 
+    $$\Vert g_k\Vert_{L^p}=\Big \Vert\sum_{n=1}^k|f_n(x)| \Big\Vert\leq \sum_{n=1}^k\Vert f_n\Vert_p\leq\sum_{n=1}^{+\infty}\Vert f_n\Vert_p=M<+\infty$$
+    That is, $g_k\in L^p(X)$\\
+    Then, 
+    $$\int_X|g|^p\mathrm d\mu=\int_X|\lim_k g_k|^p\mathrm d\mu$$
+    By the Monotone Convergence Theorem:
+    $$\lim_k\int_X|g_k|^p\mathrm d\mu=\lim_k\Vert g_k\Vert_p^p\leq M^p<+\infty$$
+    Then $g\in L^p(X)\implies g(x)<+\infty$ for a.e. $x$
+    $$\sum_{n=1}^{+\infty} |f_n(x)|<+\infty\text{ for a.e. }x$$
+    $$\implies \sum_{n=1}^{+\infty}f_n(x)\text{ converges for a.e. }x$$
+    $$s(x)=\sum_{n=1}^{+\infty}f_n(x)\text{ is well defined (a.e.) and }s_k(x)\to s(x) \text{ for a.e. }x\in X$$
+    To conclude, we apply the Dominated Convergence Theorem.
+    \begin{itemize}
+        \item $|s_k(x)-s(x)|^p\to 0\quad a.e.$
+        \item $|s_k-s|^p=\Big |\sum_{n=1}^kf_n-\sum_{n=1}^{+\infty}f_n\Big |^p = \Big(\Big |\sum_{n=k+1}^{+\infty}f_n\Big|\Big)^p\leq\Big (\sum_{n=k+1}^{+\infty}|f_n|\Big )^p\leq (g)^p\in L^1$
+    \end{itemize}    
+    Resuming:
+    $$\begin{cases}
+        |s_k-s|^p\to0\text{ a.e.}\\
+        |s_k-s|^p\leq g^p\in L^1(X)
+    \end{cases}\substack{D.C.T.\\ \implies} \int_X |s_k-s|^p\mathrm d\mu\to 0$$
+ that is, convergence in $L^p$
+    
+\end{proof}
+\subsection{Inclusion of $L^p$ spaces}
+\subsubsection{(thm) Embedding Theorem for $L^q$ into $L^p$ ($\mu(X)<+\infty$)}
+Take a measurable space $(X,\mathcal M,\mu)$, with:
+\begin{itemize}
+    \item $\mu(X)<+\infty$
+    \item $1\leq p\leq q\leq +\infty$
+\end{itemize}
+Then $$L^q(X)\subset L^p(X)$$
+This result is based on the fact that when the measure of the space $X$ is finite, integrability for a larger exponent $q$ implies integrability for any smaller exponent $p$. \\
+More precisely, $\exists\ C>0 \ : \Vert u\Vert_p \leq C\Vert u\Vert_q$
+\subsubsection{(thm) Interpolation Inequality (*)}
+If $1\leq p<q\leq +\infty$
+$$L^r(X)\subset L^p(X)\cap L^q(X)\quad \forall p\leq r\leq q$$
+\begin{proof}\ 
+\begin{enumerate}
+    \item Let $f\in L^p(X)$ and $q<+\infty$\\
+Then, $$\int_X |f|^p\mathrm d\mu=\int_X |f|^p\cdot 1\ \mathrm d\mu \leq \Big (\int_X |f|^q\mathrm d\mu\Big )^{\frac pq}\Big (\int_X 1\ \mathrm d\mu\Big)^{\frac{q-p}{p}}$$
+$\frac pq\in (0,1)$ so we can apply the Hölder's inequality with $\frac qp\implies \frac pq + \frac{q-p}{q}=1$\\
+That's equal to $\mu(X)^{\frac qp}\Vert f\Vert_q^p$
+$$\implies \Vert f\Vert_p\leq \mu(X)^{q-p}\Vert f\Vert_q$$
+Let $f\in L^\infty(X)$,
+$$\Big ( \int |f|^p\mathrm d\mu\Big )^{\frac{1}{p}}\leq \Vert f\Vert_\infty \Big (\int_X1\mathrm d\mu\Big)^{\frac 1p}=\Vert f\Vert_\infty \mu(X)^{\frac 1p}$$
+In conclusion 
+$$\Vert f\Vert_p\leq \mu(X)^p\Vert f\Vert_\infty$$
+\item Suppose $q = +\infty$\\
+If $r\in (p,q) $
+$$\exists \ t\in (0,1)\text{ s.t. }\quad r=tp+(1-t)q $$
+Hence
+$$\Vert f\Vert_r^r =\int_X|f(x)|^r\mathrm d\mu =\int_X|f(x)|^{tp}\Vert f(x)\Vert^{(1-t)q}\mathrm d\mu$$
+$$\leq \Big (\int_X|f|^p\mathrm d \mu\Big )^t\Big (\int_X |f|^q\mathrm d\mu\Big )^{1-t}=\Vert f\Vert_p^{tp}\Vert f\Vert_q^{(1-t)q}$$
+Applying Hölder's inequality,
+$$\Vert f\Vert_r\leq \Vert f\Vert_p^{\frac{tp}{r}}\Vert f\Vert_q^{\frac{(1-t)q}{r}}$$
+\item Suppose $q=+\infty$, let $r>p$
+$$\Vert f\Vert_r^r =\int_X|f(x)|^r\mathrm d\mu =\int_X |f|^{r-p}|f|^p\leq \Vert f\Vert_\infty^{r-p}\int_X|f(x)|^p\mathrm d\mu=\Vert f\Vert_p^p$$
+$$\implies \Vert f\Vert_r\leq \Vert f\Vert_\infty^{\frac{r-p}{r}}\Vert f\Vert^{\frac pr}$$
+
+\end{enumerate}
+
+
+\end{proof}
+\subsection{Back to general theory of Banach spaces}
+We know that the following are Banach:
+\begin{itemize}
+    \item $(\mathbb R^n,\text{ any norm})$
+    \item $(L^p(X),\cnorm_p)$
+    \item $(L^\infty(X),\cnorm_\infty)$
+    \item $(C(X),\cnorm_\infty)$
+\end{itemize}
+Differences between finite/infinite dimensional spaces
+\begin{center}
+    \begin{table}[h]
+        \begin{tabular}{lll}
+        \hline
+                         & finite ($\dim(X)<+\infty$)         & infinite ($\dim(X)=+\infty$) \\ \hline
+        Completeness     & always                            & not always                  \\
+        Equivalent norms & all                               & not all                     \\
+        Compactness      & compact $\iff$ closed and bounded & no                          \\
+        Density          &                                   &                            \\\hline
+        \end{tabular}
+\end{table}
+\end{center}
+
+\subsubsection{Example}
+$X=C([-1,1])$ with norm $\Vert u\Vert_1=\int_{-1}^1|u(x)|\mathrm dx$
+$$u_n(x)=\begin{cases}
+    0\quad x\leq0\\nx\quad 0\leq x\leq \frac 1n\\1\quad x\geq \frac 1n
+\end{cases}$$
+$u_n\in X\quad \forall n\geq 1$\\
+Show that $\{u_n\}$ is a Cauchy sequence with respect to $\cnorm_1$ ($m>n$)
+$$0\leq \Vert u_n-u_m\Vert_1=$$
+$$=\int_{-1}^1|u_n(x)-u_m(x)|\mathrm dx=\int_{-1}^00\mathrm dx+\int_0^{\frac 1m}(mx-nx)\mathrm dx+\int_{\frac 1m}^{\frac 1n}(1-nx)\mathrm dx+\int_{\frac 1n}^1(1-1)\mathrm dx= $$
+$$= \dots = \frac{m-n}{2m^2}+\frac{(1-\frac nm)^2}{2n}\leq \frac 1{2m}+\frac 1{2n}\xrightarrow[m,n\to 0]{}0$$
+On the other hand:
+$$\Vert u_n-u_m\Vert_\infty=\max_{-1\leq x\leq 1}|u_n(X)-u_m(x)|=1-\frac nm\centernot\to0\text{ as }n,m\to +\infty$$
+Moreover $\{u_n\}\subset L^1([-1,1])$
+\paragraph{Exercise}
+Show that $u_n\to \mathcal H$ (Heaviside)
+\paragraph{Consequences}
+\begin{enumerate}
+    \item $\cnorm_1$ and $\cnorm_\infty$ are not equivalent in $C([-1,1])$
+    \item $(C([-1,1]),\cnorm_1)$ is not a Banach space ($\mathcal H\notin C([-1,1])$
+    \item $X=L^1([-1,1])$\\ $V=C([-1,1])$\\$V\subset X$ is a vector subspace
+    $$\begin{cases}
+        \{u_n\}_n\subset V\\ u_n\to \mathcal H \text{ in } X
+    \end{cases} \text{ but }\mathcal H\notin V$$
+    that is, $V$ is not closed.
+    "find the element of $V$ which best approximates $\mathcal H$ in $X$". $dist(\mathcal H,V)=0$, but there is no point at minimal distance.
+\end{enumerate}
+\subsubsection{(rmk) Closed subsets/subspaces}
+Considering $(X,d)$ a metric space,
+\begin{itemize}
+    \item $C\subset X$ is closed $\iff$ $\partial C\subset C$ ($\overline C=C$)
+\end{itemize}
+    from the sequential point of view:
+    \begin{itemize}
+        \item $C\subset X$ is closed $\iff$
+    $$\begin{cases}
+        \{ x_n\}_n\subset C\\ x_n\to y\in X
+    \end{cases}\implies y\in C$$
+    \end{itemize}
+    
+\paragraph{Properties of closed subspaces}
+\begin{enumerate}
+    \item Completeness: In a Banach space, every closed subspace is itself a Banach space with the induced norm.
+\end{enumerate}

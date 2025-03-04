@@ -1,0 +1,68 @@
+\section{Temp}
+\subsubsection{(thm) (*)}
+Dati
+$$\begin{cases}\forall E \in \mathcal L([a,b])\\\lambda(E)<\delta\end{cases} \implies \int_E |f| d\lambda <\varepsilon$$
+
+\subsubsection{(examples) AC$\not\implies$ Lipschitz continuous}
+\textbf{Esempio 1}
+Consider $f(x)=\sqrt x $ in $[0,1]$
+$$\sqrt x = \int _0^x \frac 1{2\sqrt t }\mathrm dt\quad x\in [0,1]$$
+e $g\in AC([0,1])$. (Indeed, $g'\in L^1(0,1)$
+but $\g\notin $Lipschitz continuous\\
+\subsubsection{(example) UC$\not\implies$ AC}
+Considera $$g(x)=\begin{cases}x \sin{1/x}\quad 0<x\leq 1\\0\quad x=0\end{cases}$$
+è continua in $[0,1]\implies g\in UC([0,1])$
+But it is not AC.\\
+Indeed,
+$$ g'(x)=\sin (\frac 1x)-\frac 1x \cos(\frac 1x)\quad 0<x\leq 1$$
+\begin{itemize}
+    \item $\sin (\frac 1x)\in L^1([0,1])$
+    \item $-\frac 1x \cos(\frac 1x) \notin L^1([0,1])$
+\end{itemize}
+
+\subsection{AC functions and weak derivatives}
+Lavoriamo in $X=[a,b]\subset \mathbb R$ (diventa molto diverso in $\mathbb R^n$).
+\subsubsection{(prop) intergration by parts in AC}
+Take $u\in [a,b]\to \mathbb R$\\
+$u\in AC([a,b])\iff$
+\begin{itemize}
+    \item $u \in C([a,b])$
+    \item u è differenziabile a.e.
+    \item $u'\in L^1([a,b])$
+    \item $$\int_a^b u'\varphi \mathrm d x = -\int_a^b u\varphi'\mathrm d x\quad \forall \varphi \in C_0^\infty([a,b])$$
+\end{itemize}
+\subsubsection{(recall) Compactly supported ($\varphi \in C_0^\infty([a,b])$)}
+\begin{itemize}
+    \item $\varphi \in C^\infty$
+    \item $\exists [c,d]\subset (a,b)$ t.c. $\varphi=0 $ in $ (a,b)\setminus [c,d]$
+\end{itemize}
+\subsubsection{(def)}
+Let $u\in L^1(a,b)$. Diciamo che $u \in W^{1,1}(a,b) \iff \exists w\in L^1(a,b) $ t.c. $\int_a^b u\varphi '\mathrm dx=-\int_a^b w\varphi \mathrm d x \quad \forall \varphi \in C_0^\infty $
+
+Such a $w$ is called weak derivative of $u$ in $(a,b)$, denoted $u'$
+
+\subsubsection{(rmk)}
+Both $u$ and $w=u'$ are equivalence classes
+\subsubsection{(rmk)}
+If such a $w$ exists, it is unique.
+$$\int_a^b u \varphi ' = -\int_a^b w_1\varphi $$
+$$\int_a^b u \varphi ' = -\int_a^b w_2\varphi $$
+$\forall \varphi \in C_0^\infty ([a,b])$
+$$\implies\int_a^b(w_1-w_2)\varphi =0\quad \forall \varphi \in C_0^\infty$$
+$$\implies w_1-w_2=0\quad a.e. \ in \ [a,b]$$
+\subsubsection{(rmk)}
+In principle, the pointwise and weak derivatives are different objects, and the notation $u'$ may be misleading.\\
+But we know that if we take absolute continuous functions, they coincide.
+\subsubsection{(rmk)}
+The definition of weak derivative can be extended in the senses of measures, of distributions.
+
+Take $$H(x)=\begin{cases} 0\quad x<0\\ 1\quad x>0\end{cases}$$
+$$-\int_{-1}^1 H(x)\varphi '(x)\mathrm d x = -\int_0^1 \varphi'(x)\mathrm d x = -\varphi(1)+\varphi(0)$$
+$$\varphi(1)=0$$
+
+$$\varphi(0)=\int_[-1,1] \varphi \mathrm d\delta_0$$
+This suggests that $H^1$ è pari a 0 almost everywhere (pointwise), ma è pari a $\delta_0$ (dirac) weakly
+\subsubsection{(thm)(*)}
+$$u\in  AC([a,b])\iff u \in W^{1,1}([a,b])$$
+
+Devi farti la dimostrazione.

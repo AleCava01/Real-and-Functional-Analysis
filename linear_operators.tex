@@ -1,0 +1,284 @@
+\section{Linear Operators}
+Consider $(X,\cnorm_X), (Y,\cnorm_Y)$ normed spaces (or just take Banach). \\
+$T:X\to Y$ is a \textbf{linear} operator (or linear map) if
+\begin{itemize}
+    \item $T(\alpha u +\beta v)=\alpha T(u)+\beta T(v)\quad \forall u,v\in X\quad \forall \alpha,\beta \in \mathbb R$
+\end{itemize}
+If $Y=\mathbb R$, we usually call the linear operators as "\textbf{linear functionals}".
+\paragraph{Notation}
+$T$ linear, $T(u)=Tu$
+\paragraph{Example}
+Let's consider $X=\mathbb R^n,\ Y=\mathbb R^m$ and
+$$T:\mathbb R^n\to \mathbb R^m \text{ linear}$$
+With such spaces, the operator is just a matrix $A\in \mathbb R^{m\times n}$, which means that:
+$$T \vec{u}=A \vec{u}$$
+In infinite-dimensional spaces (like function spaces), linear operators cannot be usually represented by matrices directly, but similar ideas hold.
+\paragraph{Remark}
+$$T\text{ linear}\implies T(0)=0$$
+\subsubsection{(def) Bounded linear operator}
+$T:X\to Y$ linear is bounded if
+$$\exists M>0 \text{ s.t. }\Vert Tu\Vert _Y\leq M\Vert u\Vert _X\quad ,\forall u\in X$$
+\paragraph{Recall}
+\begin{itemize}
+    \item $T$ is Lipschitz continuous  $\iff\exists L>0$ s.t. $\Vert Tu-Tv\Vert_Y\leq L\Vert u-v\Vert _X$
+    \item $T$ is continuous at $u_0\in X \iff \forall u_n\to u_0\implies T u_n\to T u_0$
+\end{itemize}
+\paragraph{Remark}
+In finite dimensions, any linear map $T:\mathbb R^n\to\mathbb R^m$, $m,n<+\infty$ is both continuous and bounded ($\Vert A\vec x\Vert_2\leq \Vert A\Vert _2\Vert \vec x\Vert _2$).
+\paragraph{Fact} if $X,Y$ are $\infty$-dimensional,
+\begin{itemize}
+    \item linearity $\centernot\implies $ continuity
+    \item linearity $\centernot \implies $ boundedness
+\end{itemize}
+When $X$ and $Y$ are infinite-dimensional, we can’t generally assume that a linear map between them will be continuous or bounded. The existence of such maps is often a non-constructive result provided by the Axiom of Choice, meaning that while we know these maps exist, we can’t necessarily construct explicit examples.
+\subsubsection{(thm) Bounded Linear Operator Theorem}
+$T:X\to Y$ linear. The following propositions are equivalent:
+\begin{enumerate}
+    \item $T$ is bounded
+    \item $T$ is Lipschitz continuous
+    \item $T$ is continuous at any $x_0\in X$
+    \item $T$ is continuous at $0$
+\end{enumerate}
+\begin{proof}\
+    \begin{itemize}
+        \item  1)$\implies$2) \\$T \text{ bounded}\iff \Vert Tx\Vert _Y\leq M\Vert x\Vert _X\quad \forall x\in X$\\ take $x=u-v$
+        $$\Vert T(u-v)\Vert_Y\leq M\Vert u-v\Vert _X$$
+        $$\Vert Tu-Tv\Vert_Y\leq M\Vert u-v\Vert _X$$
+        that is Lipschitz continuity (by taking $L=M$).
+        \item 2)$\implies$3) \\
+        We have to check if our operator is continuous, so we ask ourselves: "Does $x_n\to x_0$ imply $Tx_n\to Tx_0$?"\\
+        From the definition of norm and Lipschitz continuity of an operator, we can deduce the following inequality:
+        $$0\leq\Vert Tx_n-T x_0\Vert_Y \leq L\Vert x_n-x_0\Vert_X$$
+        Now we notice that if $x_n\to x_0$ then $L\Vert x_n-x_0\Vert_X\to 0$, and so, from the inequality above, $\Vert Tx_n-T x_0\Vert_Y=0 \implies Tx_n\to Tx_0$.
+        \item 3)$\implies$4) $\to $ trivial.
+        \item 4)$\implies$1)\\
+        By contradiction, assume that $T$ is not bounded (for any constant, we have a vector that give us the opposite inequality):
+        $$\forall n\in \mathbb N\quad \exists\ x_n\in X\ : \ \Vert Tx_n\Vert_Y\geq n\Vert x_n\Vert _X \quad (\circledast_1)$$
+        Let $$z_n= \frac 1n\frac{x_n}{\Vert x_n\Vert_X}$$
+        Then 
+        $$\Vert z_n\Vert _X=\frac 1n\xrightarrow[n\to+\infty]{} 0\implies Tz_n \xrightarrow[n\to+\infty]{}T_0=0 \text{ in }Y$$
+        But $$(\circledast_1)\implies \Vert Tz_n\Vert_Y=\Big\Vert T\Big(\frac 1n \frac{x_n}{\Vert x_n\Vert_X}\Big)\Big\Vert_Y=\frac{1}{n\Vert x_n\Vert_X}\Vert T x_n\Vert_Y\geq 1 \not \to 0$$
+        contradiction
+        
+    \end{itemize}
+\end{proof}
+\subsubsection{(def) Space of Bounded Linear Operators / Dual Space}
+$$\mathcal L(X,Y)\coloneqq \Big\{ T:X\to Y \text{ s.t. } T \text{ is linear and continuous}\Big\}$$
+\paragraph{Notation}
+\begin{itemize}
+    \item If $Y=X$, one writes $\mathcal L(X)$
+    \item If $Y=\mathbb R$ then $\mathcal L(X,\mathbb R)=$"dual of $X$"=$X^*=X'$
+\end{itemize}
+\paragraph{Remark}
+\begin{itemize}
+    \item $\mathcal L(X,Y)$ is a vector space: $T,L\in \mathcal L(X,Y)$
+    $$(\alpha T+\beta L)(x)\coloneqq \alpha Tx+\beta Lx$$
+    $(\alpha T+\beta L)\in\mathcal L(X,Y)$
+    \item We define a norm on $\mathcal L(X,Y)$ (operator norm)
+    $$\Vert T\Vert_{\mathcal L(X,Y)}=\sup_{\Vert x\Vert \leq 1}\Vert Tx\Vert _Y$$
+    (Check that this is a norm)
+\end{itemize}
+\subsubsection{(prop) Operator norm}
+$$\Vert T\Vert_{\mathcal L(X,Y)}=\sup_{\Vert x\Vert =1}\Vert Tx\Vert_Y=\sup_{x\neq 0}\frac{\Vert Tx\Vert _Y}{\Vert x\Vert _X}=$$
+$$=\inf\Big\{M>0:\Vert Tx\Vert_Y\leq M\Vert x\Vert _Y\quad \forall x\in X\Big\}$$
+"The smallest possible constant $M$ is the operator norm"
+\begin{proof}\ 
+\begin{itemize}
+    \item Let's prove $$\sup_{\Vert x\Vert \leq 1}\Vert Tx\Vert _Y=\sup_{\Vert x\Vert =1}\Vert Tx\Vert_Y$$
+    \begin{itemize}
+        \item To see that the first term is $\geq$ than the second is easy.
+        \item Let's focus on the other inequality ($\leq$):
+            $$\forall x\neq 0,\quad \Vert Tx\Vert_Y=\Vert x\Vert_X\cdot \Big\Vert T\Big(\frac{x}{\Vert x\Vert_X}\Big )\Big\Vert_Y$$
+            We observe that $\Vert x\Vert_X\leq 1$ and renaming $\frac x{\Vert x\Vert _X}=z$, we obtain:
+            $$\Vert Tx\Vert_Y\leq \Vert Tz\Vert_Y\quad \text{with }\Vert z\Vert=1$$
+            $$\implies \sup_{\Vert x\Vert \leq 1}\Vert Tx\Vert _Y\leq\sup_{\Vert x\Vert =1}\Vert Tx\Vert_Y$$
+    \end{itemize}
+    \item Now we prove that all the others formulations are equal.
+    $$\forall x\neq 0 \quad \Vert Tx\Vert _Y\leq M\Vert x\Vert_X\iff M\geq \frac{\Vert Tx\Vert _Y}{\Vert x\Vert_X}\quad \forall x$$
+    $$\iff M\geq \Big\Vert T\Big(\frac{x}{\Vert x\Vert_X}\Big)\Big\Vert_Y\quad \forall x$$
+    ($\frac x{\Vert x\Vert_X}=z$)
+    $$\iff M\geq \Vert Tz\Vert _Y\quad \forall z,\ \Vert z\Vert_X=1$$
+    So 
+    $$\sup_{x\neq 0}\frac{\Vert Tx\Vert _Y}{\Vert x\Vert _X}=\inf\Big\{M>0:\Vert Tx\Vert_Y\leq M\Vert x\Vert _Y\quad \forall x\in X\Big\}$$
+    and $$\inf (M)\geq \sup\Vert Tz\Vert_Y$$
+\end{itemize}
+    
+\end{proof}
+\subsubsection{(thm) Completeness of $\mathcal L(X,Y)$}
+If
+\begin{itemize}
+    \item $X$ is a normed space;
+    \item $Y$ is Banach
+\end{itemize}
+Then
+$$(\mathcal L(X,Y),\cnorm_{\mathcal L(X,Y)}) \text{ is Banach}$$
+
+\subsubsection{(def) Kernel}
+The kernel of a linear operator $T:X\to Y$ denoted as:
+$$Ker(T)=\{ x\in X:Tx=0\}\subset X$$
+is the set of all vectors in the domain $X$ that are mapped to the zero vector in $Y$ by the operator $T$.
+
+The kernel is always a subspace of $X$. It "captures" the failure of $T$ to be injective.
+\subsubsection{(def) Range}
+The range of a linear operator $T:X\to Y$ denoted as:
+$$R(T)=\{ y\in Y:\exists\ x\in X \text{ s.t.}\ Tx=y\}\subset Y$$
+is the set of all vectors in the codomain $Y$ that can be expressed as $T(x)$ for some $x\in X$.
+
+Thre range represents the "output" space that $T$ can reach when applied to the elements of $X$.
+\subsubsection{(def) Injective, Surjective, Bijective operators}
+\begin{itemize}
+    \item $T\text{ injective (1-1)} \iff Ker(T)=\emptyset$
+    \item $T\text{ surjective (onto)} \iff R(T)=Y$
+    \item $T\text{ bijective} \iff T\text{ injective (1-1) and surjective (onto)} $
+\end{itemize}
+$$T\text{ bijective} \implies T^{-1}\text{ is well defined} $$
+\subsubsection{(rmk) }
+Take $X,Y$ Banach spaces, $T:X\to Y$ linear operator.
+\begin{itemize}
+    \item $Ker(T)\subset X$
+    \item $R(T)\subset Y$
+\end{itemize}
+If $T\in \mathcal L(X,Y)$, then we can easily say something about the above subspaces.\\
+If $T$ is continuous, the Kernel is always a closed subspace.
+On the other hand, $R(T)$ may be closed or not.
+\subsubsection{(def) Isomorphism}
+$X,Y$ are isomorphic if there exists a map $T\in \mathcal L(X,Y)$, which is continuous and bijective and the inverse map $T^{-1}\in \mathcal L(Y,X)$ is also continuous.
+\paragraph{Notation} $X\cong Y$
+\subsubsection{(def) Isometry}
+Let's consider a linar operator $T\in \mathcal L(X,Y)$. We say that it is an isometry if $$\Vert Tx\Vert _Y=\Vert x\Vert_X \quad \forall x\in X$$
+\subsubsection{(def) Continuous embedding}
+\paragraph{Particular case}
+Imagine that X,Y are not Banach, but just $X\subset Y$ vector subspace (for example $C([0,1])\subset L^1([0,1])$). They have different norms, how the different norms interact between them? 
+
+Consider the map $J:X\to Y$ (named "inclusion", or "immersion"). This map is linear, and if it is also continuous ($J\in \mathcal L(X,Y)$), this means that $$\Vert x\Vert_Y\leq M\Vert x\Vert_X\quad \forall x\in X$$
+We then have that convergence in the subspace implies convergence in the "bigger space".\\
+In this case we say that $J$ is an embedding.
+\paragraph{Notation} $X\hookrightarrow Y$ "continuously embedded".
+\paragraph{General case}
+Considering $X,Y$ Banach, and $T\in \mathcal L(X,Y)$ s.t. $T$ is injective,
+and $T^{-1}\in \mathcal L(R(T),X)$.\\
+Then we say that $T$ is an embedding, $X\hookrightarrow Y$ (actually, $X\cong R(T), R(T)\hookrightarrow Y$). 
+\paragraph{Example}\ \\
+We have already proved (Hölder's inequality)\\
+$(X,\mathcal M,\mu)$ measure space, $\mu(X)<+\infty$, $1\leq p<q\leq +\infty$. Then:
+$$L^p(X)\hookrightarrow L^q(X)$$
+\subsubsection{(thm) Banach-Steinhaus Theorem (unif
+bdd principle)}
+Consider $X,Y$ Banach, $\mathcal F\subset \mathcal L(X,Y)$.\\
+Suppose that $\mathcal F$ is \textbf{pointwise bounded}, this means that $$\forall x\in X\quad \exists M_x >0 $$
+$$\Vert Tx\Vert_Y\leq M_x\quad \forall T\in \mathcal F$$
+($M_x$ is a constant depending on (indexed by) the point $x$)\\
+Then $\mathcal F$ is \textbf{uniformly bounded}. That means that:
+$$\exists M>0 \ :\ \Vert T\Vert_{\mathcal L(X,Y)}\leq M \quad \forall T\in \mathcal F$$
+    The proof is based on the Baire's topological Lemma.
+    \paragraph{Baire's Lemma}\ \\
+    Suppose:
+    \begin{itemize}
+        \item $X$ to be a complete metric space
+        \item $\{C_n\}_{n\in \mathbb N}$ a family of closed subsets s.t.
+        $$X=\bigcup_{n\in \mathbb N}C_n$$
+    \end{itemize}
+    Then at least one of the $C_n$ ha a non empty interior, that means that
+    $\exists\ n_0\text{ s.t. } C_{n_0} \text{ contains a non-trivial closed ball}$, more formally:
+    $$\exists\ x_0\in C_{n_0}, \ r>0\quad \text{s.t.}\quad \overline{B_r(x_0)}\subset C_{n_0}$$
+\begin{proof} (Uniformly boundedness principle)\\
+$\forall n\in \mathbb N$ define:
+$$C_n=\{x\in X\ :\ \Vert Tx\Vert_Y\leq n, \ \forall T\in \mathcal F\}$$
+We want to apply the Baire's lemma to $\{C_n\}_n$.\\
+First of all, we claim that $C_n$ is closed: indeed, take
+$$\begin{cases}
+    \{ x_k\}_{k\in \mathbb N}\subset C_n\\ x_k\to \bar x\in X
+\end{cases}$$
+We have to show that $\bar x\in C_n$:
+\begin{itemize}
+    \item Since $\{ x_k\}_{k\in \mathbb N}\subset C_n$, we have that $\Vert Tx_k\Vert_Y\leq n\quad \forall k\in \mathbb N,\ \forall T\in \mathcal F$
+    \item Since $T$ is continuous, $\Vert Tx_k\Vert_Y\xrightarrow[k\to+\infty]{} \Vert T\bar x\Vert\leq n\quad \forall T\in \mathcal F$
+\end{itemize}
+And so $\bar x\in C_n$. This implies that
+$$\bigcup_{n\in \mathbb N} C_n=X$$
+indeed, take any $x\in X$, the pointwise boundedness implies that $\Vert Tx\Vert_Y\leq M_x,\quad \forall T\in \mathcal F$
+$$\implies x\in C_n\quad \forall n\geq M_x$$
+\\
+Now Baire implies that $\exists\  n_0\in \mathbb N, \ r>0, x_0\in X$ s.t.
+$$\overline{B_r(x_0)}\subset C_{n_0}$$
+Remember that:
+\begin{itemize}
+    \item $y\in \overline{B_r(x_0)} \iff y=x_0+rz$ where $\Vert z\Vert_X\leq 1$
+    \item $y\in C_{n_0}\iff \Vert Ty\Vert_T\leq n_0\quad \forall T\in \mathcal F$
+\end{itemize}
+Then $$\Vert T(x_0+rz)\Vert_Y\leq n_0\quad \forall T\in \mathcal F, \ \forall \Vert z\Vert_X \leq 1$$
+and
+$$\Vert T(x_0+rz)\Vert_Y=\Vert Tx_0+rTz\Vert_Y\geq r\Vert Tz\Vert_Y-\Vert Tx_0\Vert_Y$$
+And so $$r\Vert Tz\Vert_Y\leq n_0+\Vert Tx_0\Vert_Y\leq n_0+M_{x_0}\quad \forall T\in \mathcal F,\ \forall \Vert z\Vert_X \leq 1$$
+$$\Vert Tz\Vert_Y\leq \frac{n_0+M_{x_0}}{r}=M\quad \quad \quad\quad\quad\quad\forall T\in \mathcal F,\ \forall \Vert z\Vert_X \leq 1$$
+Taking the $\sup_{\Vert z\Vert_X\leq 1}$
+$$\Vert T\Vert_{\mathcal L(X,Y)}\leq M\quad \forall T\in \mathcal F$$
+\end{proof}
+
+\paragraph{Corollary} \ \\
+Considering two Banach spaces $X,Y$, and a family of bounded linear operators $\{ T_n\}_{n\in \mathbb N} \subset \mathcal L(X,Y)$.\\
+Assume that $\forall x\in X$, the sequence $ \{ T_nx\}_n\subset Y$ is a converging sequence in $Y$\\
+Let $T(x)\coloneqq \lim_{n\to+\infty}T_nx$\\
+Then $$T\in \mathcal L(X,Y)$$
+\begin{proof}\ 
+    \begin{enumerate}
+        \item  \textbf{$T$ is linear}.$$\forall n\quad T_n(\alpha x+\beta y)=\alpha T_nx+\beta T_ny$$
+    for $n\to+\infty$
+        $$\quad T(\alpha x+\beta y)=\alpha Tx+\beta Ty$$
+\item \textbf{$T$ is bounded}. \\Since $\{ T_nx\}$ converges $\forall x$, then it is bounded in $Y$.
+$$\Vert T_nx\Vert_Y\leq M_x$$
+(UBP)$\implies \Vert T_n\Vert_{\mathcal L(X,Y)}\leq M\quad \forall n$
+$$\Vert T_n\Vert_Y\leq M\quad \forall n,\ \forall \Vert z\Vert_X\leq 1$$
+$$\to\Vert T\Vert_Y\leq M\quad\forall \Vert z\Vert_X\leq 1$$
+$$\implies \Vert T\Vert_{\mathcal L(X,Y)}\leq M$$
+    \end{enumerate}
+    
+\end{proof}
+\subsection{Open mapping \& Closed Graph Theorems}
+\subsubsection{(def) Open map}
+$T:X\to Y$ is an open map if $$\forall A\subset X\text{ open}\implies T(A)\subset Y\text{ open}$$
+\paragraph{Remark}
+$T:X\to Y$ is continuous if $$\forall A\subset Y\text{ open}\implies T^{-1}(A)\subset X\text{ open}$$
+\paragraph{Example}
+$f:\mathbb R\to\mathbb R$, $f(x)=0\quad \forall x\in \mathbb R$ is not open.
+$$f((a,b))=\{0\}\quad \forall (a,b)\subset \mathbb R$$
+\subsubsection{(thm) Open mapping theorem}
+Take $X,Y$ Banach spaces, and $T\in \mathcal L(X,Y)$,
+$$T\text{ surjective}\implies T\text{ open}$$
+\begin{proof}
+    omitted.
+\end{proof}
+\paragraph{Corollary \#1}
+Consider $X,Y$ Banach and $T\in \mathcal L(X,Y)$ bijective.
+$$\implies T^{-1}\in \mathcal L(Y,X)\quad \ (\text{and} \ X\cong Y)$$
+\begin{proof}\ 
+    \begin{itemize}
+        \item $T^{-1}$ linear: trivial.
+        \item $T^{-1}$ continuous $\iff \begin{cases}
+            \forall A\subset Y \text{ open}\\\implies (T^{-1})^{-1}(A)\subset X\text{ open}
+        \end{cases}\iff T\text{ is surjective}$
+    \end{itemize}
+\end{proof}
+\paragraph{Corollary \#1 bis}
+$T\in \mathcal L(X,Y)$, injective $\implies T$ embedding $X\hookrightarrow Y$
+\paragraph{Corollary \#2}
+Consider $(X,\cnorm_a),\ (X,\cnorm_b)$ Banach.\\
+Assume that $\exists\ c_1>0$ s.t. $\Vert x\Vert_b\leq c_1\Vert x\Vert_a\quad \forall x\in X$
+\\
+Then the two norms are equivalent (
+$\exists\ c_2>0$ s.t. $\Vert x\Vert_a\leq c_2\Vert x\Vert_b\quad \forall x\in X$)
+\begin{proof}
+    Apply corollary \#1 to $J:(X,\cnorm_a)\to( X,\cnorm_b)$
+\end{proof}
+\subsubsection{(def) Closed map}
+$T:X\to Y$ is closed if the graph of $T$ is closed in the cartesian product $X\times Y$.
+$$\begin{cases}
+    x_n\to x\text{ in}\ X\\ Tx_n\to y\text{ in }Y
+\end{cases}\implies y=Tx$$
+\subsubsection{(thm) Closed Graph Theorem}
+If $X,Y$ are Banach spaces and $T:X\to Y$ is a linear operator,
+$$T\text{ is closed} \iff T\in \mathcal L(X,Y)\quad (T\text{ is bounded / continuous)}$$
+\begin{proof}
+    Omitted (do as an exercise, apply corollary \#2 with $\Vert x\Vert_a=\Vert x\Vert_X+\Vert Tx\Vert_Y$, $\Vert x\Vert_b=\Vert x\Vert_X$)
+\end{proof}
+

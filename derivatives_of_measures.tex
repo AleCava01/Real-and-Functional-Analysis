@@ -1,0 +1,41 @@
+\section{Derivatives of measures}
+Consider $(X,\mathcal M,\mu)$ complete measure space.\\
+We know that, given $\Phi :X\to [0,+\infty]$ measurable, the function
+$$\nu_\Phi(E) \coloneqq \int_E \Phi \ \mathrm d\mu=\int_E \mathrm d\nu_\Phi$$
+is a measure on $(X,\mathcal M)$.
+\subsubsection{(def) Radon-Nikodin derivative (density for $\nu$ w.r.t. $\mu$)}
+Consider $\mu, \nu$ measures on $(X,\mathcal M)$. If 
+$$\exists\ \Phi \text{ s.t. } \nu(E)=\int_E \Phi\ \mathrm d\mu\quad \forall E\in \mathcal M$$
+Then $\Phi$ is the Radon-Nikodym derivative of $\nu$ w.r.t. $\mu$:
+$$\Phi = \frac{\mathrm d\nu}{\mathrm d\mu}$$
+$\Phi:X\to[0,+\infty]$ acts as density for $\nu$ w.r.t. $\mu$, if fact, it expresses $\nu$ in terms of $\mu$ through the integral.
+\subsubsection{(def) Absolute Continuous (AC) Measures}
+Given $\mu, \nu$ measures on $(X,\mathcal M)$.\\
+Then $\nu$ è assolutamente continua w.r.t. $\mu$ (notazione: $\nu << \mu$) se, 
+$$\forall E \in \mathcal M,\ \mu(E)=0\implies \nu(E)=0$$
+\subsubsection{(lemma) Absolute Continuity Lemma via Density Function 
+ (*)}
+$$\exists\ \Phi \text{ s.t. }\nu(E)=\int_E \Phi\ \mathrm d\mu\quad \forall E\in \mathcal M\implies \nu<<\mu$$
+So the existance of the Radon-Nikodym derivative implies the absolute continuity of $\nu$ w.r.t. $\mu$.
+\begin{proof}
+ This holds because if $\nu(E)=\int_E\Phi\ \mathrm d\mu$ for all measurable sets $E$, then:
+\begin{itemize}
+    \item Whenever $\mu(E)=0$, the integral $\int_E \Phi \ \mathrm d\mu$ must also be zero because there is "no mass" in $E$ w.r.t. $\mu$. Consequently, $\nu(E)=0$ as well.
+    \item This means that $\nu(E)=0$ whenever $\mu(E)=0$, which is precisely the definition of absolute continuity of $\nu$ w.r.t. $\mu$.
+\end{itemize}   
+\end{proof}
+
+
+\subsubsection{(thm) Radon-Nikodym Theorem}
+Consider:
+\begin{itemize}
+    \item $(X,\mathcal M)$ measurable space,
+    \item $\mu, \nu$ measures,
+    \item $\mu$ is $\sigma -$finite
+\end{itemize}
+Then:
+$$\nu<<\mu\iff \exists\frac{\mathrm d \nu}{\mathrm d\mu}$$
+\paragraph{Corollary} \ \\
+$\nu$ measure on $(\mathbb R^n,\mathcal L(\mathbb R^n))$ and $\nu<<\lambda\implies$
+$$\exists\ \Phi : \nu(E)=\int_E \Phi\ \mathrm d\lambda \quad \forall E\in \mathcal L(\mathbb R^n)$$
+(Indeed, $\lambda $ is $\sigma-$finite)

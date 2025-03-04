@@ -1,0 +1,86 @@
+\documentclass{article}
+
+% Packages
+\usepackage{enumitem}   
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{tabto}
+\usepackage{centernot}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx} % For including images
+\usepackage{float} 
+\usepackage[backend=biber, style=numeric]{biblatex}
+\usepackage{biblatex} % For bibliography management
+\usepackage[pdfencoding=auto, psdextra]{hyperref}
+\hypersetup{
+    colorlinks,
+    linktoc=all,
+    linkcolor={blue},
+    citecolor={blue},
+    urlcolor={blue}
+}
+\addbibresource{references.bib}
+\usetikzlibrary{decorations.pathreplacing}
+
+% Redefined Commands
+\DeclareRobustCommand{\rchi}{{\mathpalette\irchi\relax}}
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand\myfunc[5]{%
+  \begingroup
+  \setlength\arraycolsep{0pt}
+  #1\colon\begin{array}[t]{c >{{}}c<{{}} c}
+             #2 & \to & #3 \\ #4 & \mapsto & #5 
+          \end{array}%
+  \endgroup}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand{\myquad}[1][1]{\hspace*{#1em}\ignorespaces}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\irchi}[2]{\raisebox{\depth}{$#1\chi$}} % inner command, used by \rchi
+\newcommand{\chapquote}[3]{\begin{quotation} \textit{#1} \end{quotation} \begin{flushright} - #2\end{flushright} }
+\newcommand{\cnorm}[0]{\Vert \cdot \Vert}
+\newcommand{\hookuparrow}{\mathrel{\rotatebox[origin=c]{90}{$\hookrightarrow$}}}
+\newcommand{\hookdownarrow}{\mathrel{\rotatebox[origin=c]{-90}{$\hookrightarrow$}}}
+\newcommand{\spann}[0]{\mathrm{span}}
+\newcommand{\weakstar}[0]{\stackrel{\ast}{\rightharpoonup}}
+\newcommand{\scalar}[2]{\langle  {#1} , {#2} \rangle}
+
+
+
+% Front page, title
+\title{Real and Functional Analysis%
+
+  \large Notes from a course by prof. Gianmaria Verzini\\
+    Politecnico di Milano, A.Y. 2024/2025}
+\author{Alessandro Cavalieri}
+\date{October 2024}
+
+\begin{document}
+\maketitle
+%Table of Contents
+\tableofcontents
+
+% Chapters
+\include{set_theory}
+\include{measure_theory}
+\include{lebesgue_measure}
+\include{lebesgue_integral}
+\include{spaces_of_integrable_spaces}
+\include{convergences}
+\include{fundamental_thms_of_calculus}
+\include{derivatives_of_measures}
+\include{functional_analysis_intro}
+\include{banach_spaces}
+\include{lebesgue_spaces}
+\include{compactness}
+\include{linear_operators}
+\include{dual_spaces}
+\include{reflexive_spaces}
+\include{hilbert_spaces}
+\printbibliography
+
+\end{document}

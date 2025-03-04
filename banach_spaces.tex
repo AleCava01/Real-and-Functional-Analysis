@@ -1,0 +1,32 @@
+\subsection{Banach spaces} %rivedere definizione
+$(X,\Vert\cdot \Vert )$ normed vector space is a Banach space if it is complete, i.e. every Cauchy sequence converges in $X$.
+\paragraph{Examples}
+\begin{itemize}
+    \item $(\mathbb R^n,\Vert x\Vert_p)$, with:
+    $$\Vert x\Vert_p\coloneqq\begin{cases}
+        \Vert x\Vert_p=\Big (\sum_{i=
+    1}^N|x_i|^p\Big )^{\frac 1p}\quad 1\leq p<+\infty\\
+    \Vert x\Vert_\infty=\max_i|x_i|
+    \end{cases}$$
+
+ is a Banach space (e.g. $p=2$ "Euclidean norm" which comes from a scalar product).
+ \item $\Big(C([a,b]),\ \Vert u\Vert _{C([a,b])}\Big)$, with:
+ $$\Vert u\Vert _{C([a,b])}=\max _{[a,b]}|u|$$ is a Banach space.
+ \item $\Big (C^k([a,b]), \ \Vert u\Vert_{C^k([a,b])} \Big)\quad k\geq 1$
+ , with:
+ $$\Vert u\Vert_{C^k([a,b])}=\sum_{i=0}^k \Vert u^{(i)}\Vert_{C([a,b])}$$ is Banach.
+\end{itemize}
+By now, $L^1,L^\infty, \mathrm{Lip}([a,b]), W^{(1,1)}, AC([a,b])$ are Banach spaces with the right norm.
+\paragraph{(rmk) Sequence convergence in Banach space}\ \\
+Consider a normed space $(X,\Vert\cdot \Vert)$ and $\{x_n\}_n\subset X$.
+We can define a series in terms of its partial sums 
+ ($s_k$), and we say that the series converges to some element $y\in X$ if the sequence of partial sums $\{s_k\}_{k\in \mathbb N}$ converges to $y$ in the norm:
+$$\sum_{n=1}^{+\infty} x_n=y\iff s_k=\sum_{n=1}^kx_n$$
+$$\quad \quad \quad \quad \quad \quad \quad\ \  s_k\xrightarrow[k\to +\infty]{} y$$
+In the context of real numbers, we have numerical series: $\{a_n\}_n\subset \mathbb R$ and we can apply the absolute convergence theorem, that guarantees the convergence of the series in $\mathbb R$
+$$\sum_{n=1}^{+\infty}|a_n|<+\infty\implies \sum_{n=1}^{+\infty} a_n \text{ converges}$$
+This property does not hold in general normed space $(X,\cnorm)$: $\sum_{n=1}^{+\infty}\Vert x_n\Vert <+\infty$ does not imply that $\sum_{n=1}^{+\infty}$ converges in $X$. This is due to the lack of completeness in some normed spaces or the possibility that elements in the sequence $\{x_n\}$ do not "line up" in a way that would allow their partial sums to converge to a limit in $X$.
+
+To guarantee the convergence, we need additional structure, such as $X$ begin a Banach space (see the folloing proposition).
+\subsubsection{(prop) Absolute Convergence of series in Banach spaces}
+$$(X,\Vert\cdot\Vert) \text{ is Banach space}\iff \begin{cases}\forall \{x_n\}_n\subset X\\ \sum_{n=1}^\infty \Vert x_n\Vert <+\infty\end{cases}\implies \sum_{n=1}^\infty x_n \text{ converges}$$
